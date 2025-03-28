@@ -8,6 +8,7 @@ The script will create the new folder structure for the results (if such structu
 The shell script will, upon the user's permission, attempt to first conduct the GPU benchmarking procedure (if RandLAPACK was installed with GPU configuration) and then do the same for CPU.
 Note that all the parameters passed into the benchmarking routines are hardcoded to the values used when conducting experiments for the BQRRP manuscript.
 The total time for the execution of all CPU benchmarks as part of this script is expected to take several hundreds of hours (at leas on Intel Sapphire Rapids and AMD Zen4c platforms), please be mindful of that when launching the CPU benchmarks.
+Note that we did not actually use ["run_randlapack_benchmarks.sh"](https://github.com/TeachRaccooon/BQRRP/blob/main/run_randlapack_benchmarks.sh) when gathering the results for the BQRRP paper, as that procedure required lots of trial-and-error.
 
 2. After "run_randlapack_benchmarks.sh" execution is complete, the user may utilize ["run_all_plotting_scripts.m"](https://github.com/TeachRaccooon/BQRRP/blob/main/run_all_plotting_scripts.m) MATLAB program in order to plot the obtained results.
 The detailed configuration of "run_all_plotting_scripts.m" will plot the results that are contained in this repo (gathered in the process of writing the BQRRP manuscript).
