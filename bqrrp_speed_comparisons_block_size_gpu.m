@@ -46,15 +46,15 @@ function[] = process_and_plot(Data_in, num_block_sizes, rows, cols, plot_positio
         switch plot_position
             case 1
                 title('NVIDIA H100', 'FontSize', 20);
-                ylabel('dim = 2048; GigaFLOP/s', 'FontSize', 20);
+                ylabel('dim = 2048; TeraFLOP/s', 'FontSize', 20);
             case 2
-                ylabel('dim = 4096; GigaFLOP/s', 'FontSize', 20);
+                ylabel('dim = 4096; TeraFLOP/s', 'FontSize', 20);
             case 3
-                ylabel('dim = 8,192; GigaFLOP/s', 'FontSize', 20);
+                ylabel('dim = 8,192; TeraFLOP/s', 'FontSize', 20);
             case 4
-                ylabel('dim = 16384; GigaFLOP/s', 'FontSize', 20);
+                ylabel('dim = 16384; TeraFLOP/s', 'FontSize', 20);
             case 5
-                ylabel('dim = 32768; GigaFLOP/s', 'FontSize', 20);
+                ylabel('dim = 32768; TeraFLOP/s', 'FontSize', 20);
                 xlabel('block size', 'FontSize', 20); 
         end
     end

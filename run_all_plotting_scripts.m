@@ -6,7 +6,6 @@ GPU_path          = "benchmark-output-bqrrp-paper/A100/";
 benchmarking_date = "";
 
 show_lables = 1;
-
 figure('Name', 'Figure 19: BQRRP performance varying block size small inputs');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -33,7 +32,7 @@ filename3 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_
 hqrrp_plot_remake_flops(filename1, filename2, filename3, 10, 5, 20, 7, show_lables);
 
 figure('Name', 'Figure 12-13: BQRRP performance varying block size GPU');
-filename = GPU_path + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_GPU_speed_comparisons_block_size_num_info_lines_6.txt";
+filename = GPU_path + "BQRRP_speed_comparisons_block_size_gpu/" + benchmarking_date + "_BQRRP_GPU_speed_comparisons_block_size_num_info_lines_6.txt";
 bqrrp_speed_comparisons_block_size_gpu(filename, 2^11, 2^11, 28, 5, show_lables);
 
 figure('Name', 'Figure 11: BQRRP performance varying mat size');
@@ -52,8 +51,8 @@ filename2 = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_BQRRP_pi
 bqrrp_pivot_quality(filename1, filename2, 16384, show_lables);
 
 figure('Name', 'Figure 7: BQRRP runtime breakdown GPU');
-filename1 = GPU_path + "BQRRRP_runtime_breakdown/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr__num_info_lines_7.txt";
-filename2 = GPU_path + "BQRRRP_runtime_breakdown/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_qrf__num_info_lines_7.txt";
+filename1 = GPU_path + "BQRRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr__num_info_lines_7.txt";
+filename2 = GPU_path + "BQRRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_qrf__num_info_lines_7.txt";
 bqrrp_runtime_breakdown_gpu(filename1, filename2, show_lables);
 
 figure('Name', 'Figure 6: BQRRP runtime breakdown CPU');
@@ -80,3 +79,4 @@ figure('Name', 'Figure 1: HQRRP plot remake performance ratios');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
+
