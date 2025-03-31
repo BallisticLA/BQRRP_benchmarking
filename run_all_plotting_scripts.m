@@ -51,8 +51,8 @@ filename2 = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_BQRRP_pi
 bqrrp_pivot_quality(filename1, filename2, 16384, show_lables);
 
 figure('Name', 'Figure 7: BQRRP runtime breakdown GPU');
-filename1 = GPU_path + "BQRRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr__num_info_lines_7.txt";
-filename2 = GPU_path + "BQRRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_qrf__num_info_lines_7.txt";
+filename1 = GPU_path + "BQRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr_num_info_lines_6.txt";
+filename2 = GPU_path + "BQRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_qrf_num_info_lines_6.txt";
 bqrrp_runtime_breakdown_gpu(filename1, filename2, show_lables);
 
 figure('Name', 'Figure 6: BQRRP runtime breakdown CPU');
@@ -79,4 +79,5 @@ figure('Name', 'Figure 1: HQRRP plot remake performance ratios');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
+
 

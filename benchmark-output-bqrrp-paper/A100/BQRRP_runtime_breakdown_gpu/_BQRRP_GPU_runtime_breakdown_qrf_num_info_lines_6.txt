@@ -1,6 +1,5 @@
 Description: Results from the BQRRP GPU runtime breakdown benchmark, recording the time it takes to perform every subroutine in BQRRP.
 File format: 15 data columns, each corresponding to a given BQRRP subroutine: preallocation_t_dur, qrcp_main_t_dur, copy_A_sk_t_dur, qrcp_piv_t_dur, copy_A_t_dur, piv_A_t_dur, copy_J_t_dur, updating_J_t_dur, preconditioning_t_dur, qr_tall_t_dur, q_reconstruction_t_dur, apply_transq_t_dur, sample_update_t_dur, t_rest, total_t_dur               rows correspond to BQRRP runs with block sizes varying in a way unique for a particular run.
-Num OMP threads:256
 Input type:2
 Input size:32768 by 32768
 Additional parameters: Tall QR subroutine cholqr BQRRP block sizes: 32,64,96,128,160,192,224,256,288,320,352,384,416,448,480,512,640,768,896,1024,1152,1280,1408,1536,1664,1792,1920,2048

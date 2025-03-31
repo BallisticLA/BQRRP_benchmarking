@@ -1,6 +1,6 @@
 function[] = bqrrp_runtime_breakdown_gpu(filename_CQR, filename_HQR, show_labels)
-    Data_in_CQR = readfile(filename_CQR, 7);
-    Data_in_HQR = readfile(filename_HQR, 7);
+    Data_in_CQR = readfile(filename_CQR, 6);
+    Data_in_HQR = readfile(filename_HQR, 6);
 
     % The test that acquires data uses the following block sizes:
     %{32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512, 640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664, 1792, 1920, 2048};

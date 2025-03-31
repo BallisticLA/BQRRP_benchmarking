@@ -45,7 +45,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, rows, cols, plot_positio
     if show_labels 
         switch plot_position
             case 1
-                title('NVIDIA H100', 'FontSize', 20);
+                title('NVIDIA GPU', 'FontSize', 20);
                 ylabel('dim = 2048; TeraFLOP/s', 'FontSize', 20);
             case 2
                 ylabel('dim = 4096; TeraFLOP/s', 'FontSize', 20);
