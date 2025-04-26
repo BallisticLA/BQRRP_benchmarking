@@ -4,13 +4,13 @@ function[] = bqrrp_pivot_quality(filename1, filename2, dim, show_labels)
 
     tiledlayout(2, 2,"TileSpacing","tight");
     nexttile
-    plot_r_norm(Data_in_r_norm(1, :), dim, 1, show_labels, 10^5)
+    plot_r_norm(Data_in_r_norm(1, :), dim, 1, show_labels, 10^10)
     nexttile
-    plot_r_norm(Data_in_r_norm(2, :), dim, 2, show_labels, 10^5)
+    plot_r_norm(Data_in_r_norm(2, :), dim, 2, show_labels, 10^10)
     nexttile
-    plot_sv_ratio(Data_in_sv_ratio(1:2, :), dim, 3, show_labels, 10^10)
+    plot_sv_ratio(Data_in_sv_ratio(1:2, :), dim, 3, show_labels, 10^15)
     nexttile
-    plot_sv_ratio(Data_in_sv_ratio(3:4, :), dim, 4, show_labels, 10^10)
+    plot_sv_ratio(Data_in_sv_ratio(3:4, :), dim, 4, show_labels, 10^15)
 end
 
 function[] = plot_sv_ratio(Data_in, dim, plot_position, show_labels, y_lim)
@@ -23,7 +23,7 @@ function[] = plot_sv_ratio(Data_in, dim, plot_position, show_labels, y_lim)
     ax.YAxis.FontSize = 20;
     grid on 
     xlim([0 dim]);
-    ylim([0 y_lim]);
+    ylim([10^-2 y_lim]);
 
     if show_labels 
         switch plot_position
@@ -56,7 +56,7 @@ function[] = plot_r_norm(Data_in, dim, plot_position, show_labels, y_lim)
     ax.YAxis.FontSize = 20;
     grid on 
     xlim([0 dim]);
-    ylim([10^-15 y_lim]);
+    ylim([0 y_lim]);
 
     if show_labels 
         switch plot_position

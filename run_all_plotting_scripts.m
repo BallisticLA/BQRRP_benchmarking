@@ -6,6 +6,7 @@ GPU_path          = "benchmark-output-bqrrp-paper/A100/";
 benchmarking_date = "";
 
 show_lables = 1;
+
 figure('Name', 'Figure 19: BQRRP performance varying block size small inputs');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -44,11 +45,15 @@ figure('Name', 'Figure 10: BQRRP performance varying block size');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_block_size_cpu(filename1, filename2, 2^16, 2^16, 64000, 64000, 6, 3, 7, show_lables);
-
+%}
 figure('Name', 'Figure 9: BQRRP pivot quality');
 filename1 = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_BQRRP_pivot_quality_metric_1_num_info_lines_6.txt";
 filename2 = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_BQRRP_pivot_quality_metric_2_num_info_lines_6.txt";
 bqrrp_pivot_quality(filename1, filename2, 16384, show_lables);
+
+figure('Name', 'Figure 8: Spectrum of Kahan matrix');
+filename = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_Kahan_spectrum_num_info_lines_4.txt";
+kahan_spectrum(filename, 16384, show_lables);
 
 figure('Name', 'Figure 7: BQRRP runtime breakdown GPU');
 filename1 = GPU_path + "BQRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr_num_info_lines_6.txt";
@@ -79,5 +84,3 @@ figure('Name', 'Figure 1: HQRRP plot remake performance ratios');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
-
-
