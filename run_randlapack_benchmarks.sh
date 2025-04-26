@@ -193,6 +193,10 @@ else
     eval "$NUMACTL_VAR env OMP_NUM_THREADS=$MAX_THREADS $EXECUTION_DIR/BQRRP_runtime_breakdown $CPU_DIR/BQRRP_runtime_breakdown/$DATETIME geqrf  3 65536 65536 256 512 1024 2048 4096 8192;"
     echo -e "BQRRP runtime breakdown complete\n"
 
+    # Kahan matrix spectrum
+    echo -e "\n$NUMACTL_VAR env OMP_NUM_THREADS=$MAX_THREADS EXECUTION_DIR/Kahan_spectrum CPU_DIR/BQRRP_pivot_quality/$DATETIME 16384 16384;"
+    eval "$NUMACTL_VAR env OMP_NUM_THREADS=$MAX_THREADS $EXECUTION_DIR/Kahan_spectrum $CPU_DIR/BQRRP_pivot_quality/$DATETIME 16384 16384;"
+
     # BQRRP pivot quality
     echo -e "\n$NUMACTL_VAR env OMP_NUM_THREADS=$MAX_THREADS EXECUTION_DIR/BQRRP_pivot_quality CPU_DIR/BQRRP_pivot_quality/$DATETIME 16384 16384 64;"
     eval "$NUMACTL_VAR env OMP_NUM_THREADS=$MAX_THREADS $EXECUTION_DIR/BQRRP_pivot_quality $CPU_DIR/BQRRP_pivot_quality/$DATETIME 16384 16384 64;"
