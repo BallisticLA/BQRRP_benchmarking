@@ -62,7 +62,7 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     hold on
     loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
 
-    xlim([8000 64000]);
+    xlim([0 64000]);
     ylim([0 y_lim]);
     yticks([0, 50, 250, 500, 1000, 2000, 4000]);
     ax = gca;

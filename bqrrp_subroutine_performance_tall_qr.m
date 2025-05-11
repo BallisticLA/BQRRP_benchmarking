@@ -61,7 +61,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     hold on
     semilogx(x, Data_out(:, 8), '-*', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % GEQRT NB 2048
     xticks([512 2048 8192]);
-    xlim([256 8192]);
+    xlim([0 8192]);
     ylim([0 y_lim]);
 
     ax = gca;

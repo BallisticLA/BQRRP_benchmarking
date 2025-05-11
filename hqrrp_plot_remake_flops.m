@@ -86,7 +86,7 @@ function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels, n
         legend('Location','northeastoutside');
     end
     ylim([y_min_lim y_max_lim]);
-    xlim([1000 10000]);
+    xlim([0 10000]);
     xticks([2000 4000 6000 8000 10000]);
     yticks(y_ticks);
     ax = gca;

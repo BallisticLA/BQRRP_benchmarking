@@ -35,7 +35,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, rows, cols, plot_positio
     plot(x, Data_out(:, 3), '', 'Color', 'blue',    "MarkerSize", 18,'LineWidth', 1.8) % GEQRF
     hold on
 
-    xlim([32 2048]);
+    xlim([0 2048]);
     %ylim([0 y_lim]);
     ax = gca;
     ax.XAxis.FontSize = 20;

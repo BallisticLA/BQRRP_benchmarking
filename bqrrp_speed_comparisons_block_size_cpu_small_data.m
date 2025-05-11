@@ -79,17 +79,17 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
 
     switch rows
         case 4096
-            xlim([8 4096]);
+            xlim([0 4096]);
         case 4000
-            xlim([5 4000]);
+            xlim([0 4000]);
         case 2048
-            xlim([8 2048]);
+            xlim([0 2048]);
         case 2000
-            xlim([5 2000]);
+            xlim([0 2000]);
         case 1024
-            xlim([8 1024]);
+            xlim([0 1024]);
         case 1000
-            xlim([5 1000]);
+            xlim([0 1000]);
     end
 
     xticks(x)

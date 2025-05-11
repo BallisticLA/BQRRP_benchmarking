@@ -44,7 +44,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     hold on
     semilogx(x, Data_out(:, 2), '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8)  % LUQR
     xticks([512 2048 8192]);
-    xlim([256 8192]);
+    xlim([128 8192]);
     ylim([0 y_lim]);
     ax = gca;
     ax.XAxis.FontSize = 20;
