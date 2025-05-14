@@ -3,7 +3,8 @@ function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, f
     Data_in_AMD = readfile(filename_AMD, 7);
 
     plot_position = 1; 
-    y_lim = [200, 320, 810];
+    y_lim_max = [200, 320, 810];
+    y_lim_min = [0.3, 1.3, 3];
 
     % Horizontally stacking Intel and AMD machines
     tiledlayout(3, 2,"TileSpacing","tight")
@@ -12,10 +13,10 @@ function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, f
 
     for i = 1:num_mat_sizes
         nexttile
-        process_and_plot(Data_in_Intel(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
+        process_and_plot(Data_in_Intel(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim_max(1, i), y_lim_min(1, i));
         plot_position = plot_position + 1;
         nexttile
-        process_and_plot(Data_in_AMD(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
+        process_and_plot(Data_in_AMD(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim_max(1, i), y_lim_min(1, i));
         plot_position = plot_position + 1;
         data_start = data_end + 1;
         num_block_sizes = num_block_sizes + 1;
@@ -26,7 +27,7 @@ function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, f
 end
 
 
-function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim)
+function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim_max, y_lim_min)
 
     Data_in = data_preprocessing_best(Data_in, num_block_sizes, num_iters, num_algs);
 
@@ -95,7 +96,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xticks(x)
     yticks([1 10 50 100 250 500])
 
-    ylim([0 y_lim]);
+    ylim([y_lim_min y_lim_max]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
@@ -111,7 +112,6 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
                 title('AMD CPU', 'FontSize', 20);
             case 3
                 ylabel('dim = 2000; GigaFLOP/s', 'FontSize', 20); 
-                xlabel('block size', 'FontSize', 20); 
             case 5
                 ylabel('dim = 4000; GigaFLOP/s', 'FontSize', 20); 
                 xlabel('block size', 'FontSize', 20); 

@@ -2,10 +2,21 @@ function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, file
 
     Data_in_Intel = readfile(filename_Intel, 7);
     Data_in_AMD   = readfile(filename_AMD, 7);
+    % Wide
+    if show_labels
+        figure('Name', 'Figure 19: BQRRP performance varying mat size wide', 'NumberTitle', 'off');
+    else
+        figure
+    end
+    tiledlayout(1, 2,"TileSpacing","compact")
+    nexttile
+    process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 3, show_labels, 4900)
+    nexttile
+    process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 4, show_labels, 4900)
 
     % Tall
     if show_labels
-        figure('Name', 'Figure 17: BQRRP performance varying mat size tall');
+        figure('Name', 'Figure 18: BQRRP performance varying mat size tall', 'NumberTitle', 'off');
     else
         figure
     end
@@ -15,17 +26,6 @@ function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, file
     nexttile
     process_and_plot(Data_in_AMD(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 2, show_labels, 4200)
 
-    % Wide
-    if show_labels
-        figure('Name', 'Figure 18: BQRRP performance varying mat size wide');
-    else
-        figure
-    end
-    tiledlayout(1, 2,"TileSpacing","compact")
-    nexttile
-    process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 3, show_labels, 4900)
-    nexttile
-    process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 4, show_labels, 4900)
 end
 
 
@@ -63,8 +63,8 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
 
     xlim([0 64000]);
-    ylim([0 y_lim]);
-    yticks([0, 50, 250, 500, 1000, 2000, 4000]);
+    ylim([5 y_lim]);
+    yticks([10, 50, 250, 500, 1000, 2000, 4000]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;

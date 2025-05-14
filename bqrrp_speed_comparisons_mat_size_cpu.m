@@ -53,8 +53,8 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
 
     xlim([0 32000]);
-    ylim([0 y_lim]);
-    yticks([0, 50, 250, 500, 1000, 2000, 4000]);
+    ylim([7 y_lim]);
+    yticks([10, 50, 250, 500, 1000, 2000, 4000]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;

@@ -55,7 +55,7 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         semilogy(x, Data_out(rb_start:rb_end, 1), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % HQRRP GFLOPS
         hold on
     end
-    plot_config(plot_num, 0, 200, [1 10 50 100 150 200], show_labels, num_plot_rows, num_plot_cols);
+    plot_config(plot_num, 2, 200, [1 10 50 100 150 200], show_labels, num_plot_rows, num_plot_cols);
     plot_num = plot_num + num_plot_cols;
 
     nexttile(plot_num)
@@ -65,7 +65,7 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         semilogy(x, Data_out(rb_start:rb_end, 2), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % GEQP3 GFLOPS
         hold on
     end
-    plot_config(plot_num, 0, 2000, [100 500 1000 1500 2000], show_labels, num_plot_rows, num_plot_cols);
+    plot_config(plot_num, 12, 2000, [100 500 1000 1500 2000], show_labels, num_plot_rows, num_plot_cols);
     plot_num = plot_num + num_plot_cols;
 
     nexttile(plot_num)
@@ -75,7 +75,7 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         semilogy(x, Data_out(rb_start:rb_end, 3), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % GEQRF GFLOPS
         hold on
     end
-    plot_config(plot_num, 0, 170, [10 50 100 150], show_labels, num_plot_rows, num_plot_cols);
+    plot_config(plot_num, 2.5, 170, [10 50 100 150], show_labels, num_plot_rows, num_plot_cols);
 
 end
 
