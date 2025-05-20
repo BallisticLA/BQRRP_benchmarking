@@ -2,7 +2,7 @@ function[] = bqrrp_pivot_quality(filename1, filename2, dim, show_labels)
     Data_in_r_norm    = readfile(filename1, 6);
     Data_in_sv_ratio  = readfile(filename2, 6);
 
-    tiledlayout(2, 2,"TileSpacing","tight");
+    tiledlayout(2, 2,"TileSpacing","compact");
     nexttile
     plot_r_norm(Data_in_r_norm(1, :), dim, 1, show_labels, 10^10)
     nexttile

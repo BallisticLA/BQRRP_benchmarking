@@ -1,31 +1,24 @@
-function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, filename_AMD, rows, cols, num_mat_sizes, num_iters, num_algs, show_labels)
+function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, filename_AMD, fig_path, rows, cols, num_mat_sizes, num_iters, num_algs, show_labels)
 
     Data_in_Intel = readfile(filename_Intel, 7);
     Data_in_AMD   = readfile(filename_AMD, 7);
     % Wide
-    if show_labels
-        figure('Name', 'Figure 19: BQRRP performance varying mat size wide', 'NumberTitle', 'off');
-    else
-        figure
-    end
+    figure('Name', 'fig_19_bqrrp_performance_varying_mat_size_wide', 'NumberTitle', 'off');
     tiledlayout(1, 2,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 3, show_labels, 4900)
     nexttile
     process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 4, show_labels, 4900)
+    fig_save(gcf, fig_path, 11.5, 10);
 
     % Tall
-    if show_labels
-        figure('Name', 'Figure 18: BQRRP performance varying mat size tall', 'NumberTitle', 'off');
-    else
-        figure
-    end
+    figure('Name', 'fig_18_bqrrp_performance_varying_mat_size_tall', 'NumberTitle', 'off');
     tiledlayout(1, 2,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 1, show_labels, 4200)
     nexttile
     process_and_plot(Data_in_AMD(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 2, show_labels, 4200)
-
+    fig_save(gcf, fig_path, 11.5, 10);
 end
 
 
