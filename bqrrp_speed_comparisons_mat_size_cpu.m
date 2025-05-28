@@ -3,11 +3,11 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
     Data_in_Intel = readfile(filename_Intel, 7);
     Data_in_AMD = readfile(filename_AMD, 7);
 
-    y_lim = [100, 500, 1600, 3800, 4200];
+    y_lim = [500, 1600, 3800, 4200];
     plot_position = 1;
 
     %128 threads - 1 thread
-    tiledlayout(5, 2,"TileSpacing","compact")
+    tiledlayout(num_thread_nums, 2,"TileSpacing","compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(num_mat_sizes*num_iters*(i-1)+1:num_mat_sizes*num_iters*i,:), num_mat_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(:,i))
@@ -63,25 +63,23 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     if show_labels 
         switch plot_position
             case 1
-                ylabel('threads=1;GigaFLOP/s', 'FontSize', 20);
+                ylabel('threads=4;GigaFLOP/s', 'FontSize', 20);
                 title('Intel CPU', 'FontSize', 20);
             case 2
                 title('AMD CPU', 'FontSize', 20);
             case 3
-                ylabel('threads=4;GigaFLOP/s', 'FontSize', 20);
-            case 5
                 ylabel('threads=16;GigaFLOP/s', 'FontSize', 20);
-            case 7
+            case 5
                 ylabel('threads=64;GigaFLOP/s', 'FontSize', 20);
-            case 9
+            case 7
                 ylabel('threads=128;GigaFLOP/s', 'FontSize', 20);
                 xlabel('block size', 'FontSize', 20); 
-            case 10
+            case 8
                 xlabel('block size', 'FontSize', 20); 
         end
     end
 
-    if plot_position < 9
+    if plot_position < 7
         set(gca,'Xticklabel',[])
     end
     if ~mod(plot_position, 2)
@@ -93,11 +91,11 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
             lgd=legend('BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3');
             lgd.FontSize = 20;
             legend('Location','northeastoutside'); 
-        case 9
+        case 7
             xtickangle(45);
             xticks([8000 16000 32000]);
             xticklabels({'8000', '16000', '32000'})
-        case 10
+        case 8
             xtickangle(45);
             xticks([8000 16000 32000]);
             xticklabels({'8000', '16000', '32000'})

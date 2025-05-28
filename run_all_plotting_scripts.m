@@ -21,14 +21,14 @@ fig_save(gcf, fig_path, 11.5, 10.5);
 figure('Name', 'fig_16_hqrrp_runtime_breakdown', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";
-hqrrp_runtime_breakdown(filename1, filename2, 5, 11, 3, show_lables)
-fig_save(gcf, fig_path, 11.5, 14);
+hqrrp_runtime_breakdown(filename1, filename2, 4, 11, 3, show_lables)
+fig_save(gcf, fig_path, 11.5, 11.5);
 
 figure('Name', 'fig_15_hqrrp_performance_varying_block_size');
 filename1 = CPU_path_1 + "HQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
-hqrrp_speed_comparisons_block_size(filename1, filename2, 32000, 32000, 5, 11, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11, 14);
+hqrrp_speed_comparisons_block_size(filename1, filename2, 32000, 32000, 4, 11, 3, 7, show_lables);
+fig_save(gcf, fig_path, 11.5, 11.5);
 
 figure('Name', 'fig_14_hqrrp_plot_remake_flops', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
@@ -45,8 +45,8 @@ fig_save(gcf, fig_path, 6, 15);
 figure('Name', 'fig_11_bqrrp_performance_varying_mat_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
-bqrrp_speed_comparisons_mat_size_cpu(filename1, filename2, 8000, 8000, 3, 5, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 14);
+bqrrp_speed_comparisons_mat_size_cpu(filename1, filename2, 8000, 8000, 3, 4, 3, 7, show_lables);
+fig_save(gcf, fig_path, 11.5, 11.5);
 
 figure('Name', 'fig_10_bqrrp_performance_varying_block_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -100,3 +100,4 @@ filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_spee
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
 fig_save(gcf, fig_path, 11.5, 10);
+

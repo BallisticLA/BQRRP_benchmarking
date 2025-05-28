@@ -4,11 +4,11 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
     Data_in_AMD = readfile(filename_AMD, 7);
 
     plot_position = 1;
-    y_lim = [90, 400, 1600, 3800, 4200];
+    y_lim = [400, 1600, 3800, 4200];
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(5, 2,"TileSpacing","compact")
+    tiledlayout(num_thread_nums, 2,"TileSpacing","compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(((i-1)*num_block_sizes*num_iters+1):(i*num_block_sizes*num_iters),:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
@@ -58,25 +58,23 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     if show_labels 
         switch plot_position
             case 1
-                ylabel('threads=1;GigaFLOP/s', 'FontSize', 20);
+                ylabel('threads=4;GigaFLOP/s', 'FontSize', 20);
                 title('Intel CPU', 'FontSize', 20);
             case 2
                 title('AMD CPU', 'FontSize', 20);
             case 3
-                ylabel('threads=4;GigaFLOP/s', 'FontSize', 20);
-            case 5
                 ylabel('threads=16;GigaFLOP/s', 'FontSize', 20);
-            case 7
+            case 5
                 ylabel('threads=64;GigaFLOP/s', 'FontSize', 20);
-            case 9
+            case 7
                 ylabel('threads=128;GigaFLOP/s', 'FontSize', 20);
                 xlabel('dim', 'FontSize', 20); 
-            case 10
+            case 8
                 xlabel('dim', 'FontSize', 20); 
         end
     end
 
-    if plot_position < 13
+    if plot_position < 7
         set(gca,'Xticklabel',[])
     end
     if ~mod(plot_position, 2)
@@ -88,10 +86,10 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
             lgd=legend('HQRRP', 'GEQRF', 'GEQP3');
             lgd.FontSize = 20;
             legend('Location','northeastoutside'); 
-        case 9
+        case 7
             xticks([5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000]);
             xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
-        case 10
+        case 8
             xticks([5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000]);
             xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
     end
