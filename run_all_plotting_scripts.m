@@ -40,7 +40,7 @@ fig_save(gcf, fig_path, 13.5, 14);
 figure('Name', 'fig_12_13_bqrrp_performance_varying_block_size_gpu', 'NumberTitle', 'off');
 filename = GPU_path + "BQRRP_speed_comparisons_block_size_gpu/" + benchmarking_date + "_BQRRP_GPU_speed_comparisons_block_size_num_info_lines_6.txt";
 bqrrp_speed_comparisons_block_size_gpu(filename, 2^11, 2^11, 28, 5, show_lables);
-fig_save(gcf, fig_path, 6, 15);
+fig_save(gcf, fig_path, 11.5, 11.5);
 
 figure('Name', 'fig_11_bqrrp_performance_varying_mat_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
@@ -100,4 +100,3 @@ filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_spee
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
 fig_save(gcf, fig_path, 11.5, 10);
-
