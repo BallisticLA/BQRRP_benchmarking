@@ -70,9 +70,9 @@ function[h_out] = process_and_plot(Data_in, num_block_sizes, rows, cols, plot_po
         end
     end
 
-    if plot_position ~= 5
-        set(gca, 'XTickLabel', []);
-    else
+    if plot_position == 3 ||  plot_position == 4 || plot_position == 5
         xticks([32, 256, 512, 1024, 2048]);
+    else
+        set(gca, 'XTickLabel', []);
     end
 end
