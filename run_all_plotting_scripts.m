@@ -16,37 +16,37 @@ figure('Name', 'fig_17_bqrrp_performance_varying_block_size_small_inputs', 'Numb
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_block_size_cpu_small_data(filename1, filename2, 1000, 1000, 3, 8, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 11.5, 10.5);
 
 figure('Name', 'fig_16_hqrrp_runtime_breakdown', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";
-hqrrp_runtime_breakdown(filename1, filename2, 5, 11, 3, 1)
-fig_save(gcf, fig_path, 11.5, 10);
+hqrrp_runtime_breakdown(filename1, filename2, 5, 11, 3, show_lables)
+fig_save(gcf, fig_path, 11.5, 14);
 
 figure('Name', 'fig_15_hqrrp_performance_varying_block_size');
 filename1 = CPU_path_1 + "HQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 hqrrp_speed_comparisons_block_size(filename1, filename2, 32000, 32000, 5, 11, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 11, 14);
 
 figure('Name', 'fig_14_hqrrp_plot_remake_flops', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_AOCL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename3 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_flops(filename1, filename2, filename3, 10, 5, 20, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 13.5, 14);
 
 figure('Name', 'fig_12_13_bqrrp_performance_varying_block_size_gpu', 'NumberTitle', 'off');
 filename = GPU_path + "BQRRP_speed_comparisons_block_size_gpu/" + benchmarking_date + "_BQRRP_GPU_speed_comparisons_block_size_num_info_lines_6.txt";
 bqrrp_speed_comparisons_block_size_gpu(filename, 2^11, 2^11, 28, 5, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 6, 15);
 
 figure('Name', 'fig_11_bqrrp_performance_varying_mat_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_mat_size_cpu(filename1, filename2, 8000, 8000, 3, 5, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 11.5, 14);
 
 figure('Name', 'fig_10_bqrrp_performance_varying_block_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -63,13 +63,13 @@ fig_save(gcf, fig_path, 11.5, 10);
 figure('Name', 'fig_8_spectrum_of_kahan_matrix', 'NumberTitle', 'off');
 filename = CPU_path_1 + "BQRRP_pivot_quality/" + benchmarking_date + "_Kahan_spectrum_num_info_lines_4.txt";
 kahan_spectrum(filename, 16384, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 6, 5.5);
 
 figure('Name', 'fig_7_bqrrp_runtime_breakdown_gpu', 'NumberTitle', 'off');
 filename1 = GPU_path + "BQRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_cholqr_num_info_lines_6.txt";
 filename2 = GPU_path + "BQRRP_runtime_breakdown_gpu/" + benchmarking_date + "_BQRRP_GPU_runtime_breakdown_qrf_num_info_lines_6.txt";
 bqrrp_runtime_breakdown_gpu(filename1, filename2, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 8.5, 10);
 
 figure('Name', 'fig_6_bqrrp_runtime_breakdown_cpu', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_runtime_breakdown/" + benchmarking_date + "_BQRRP_runtime_breakdown_num_info_lines_7.txt";

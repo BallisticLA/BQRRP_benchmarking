@@ -9,7 +9,7 @@ function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, file
     process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 3, show_labels, 4900)
     nexttile
     process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 4, show_labels, 4900)
-    fig_save(gcf, fig_path, 11.5, 10);
+    fig_save(gcf, fig_path, 13, 5.5);
 
     % Tall
     figure('Name', 'fig_18_bqrrp_performance_varying_mat_size_tall', 'NumberTitle', 'off');
@@ -18,7 +18,7 @@ function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, file
     process_and_plot(Data_in_Intel(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 1, show_labels, 4200)
     nexttile
     process_and_plot(Data_in_AMD(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 2, show_labels, 4200)
-    fig_save(gcf, fig_path, 11.5, 10);
+    fig_save(gcf, fig_path, 13, 5.5);
 end
 
 
