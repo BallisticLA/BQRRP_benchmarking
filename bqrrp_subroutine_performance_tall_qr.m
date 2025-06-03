@@ -13,15 +13,38 @@ function[] = bqrrp_subroutine_performance_tall_qr(filename_Intel, filename_AMD, 
     Data_in_AMD_64k   = Data_in_AMD_64k((num_block_sizes * num_iters)+1:(2 * num_block_sizes * num_iters), :);
 
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(2, 2,"TileSpacing","tight")
+    tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 3100);
+    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 3200);
     nexttile
-    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 3100);
+    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 3200);
     nexttile
-    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 3800);
+        % Phantom plot
+        markersize = 15;
+        plot(nan, nan, '-^', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     
+        hold on
+        plot(nan, nan, '-v', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8) 
+        hold on
+        plot(nan, nan, '-<', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    
+        hold on
+        plot(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
+        hold on
+        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
+        hold on
+        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
+        set(gca,'Yticklabel',[])
+        lgd=legend({'GEQRF', 'LATSQR', 'CholQR', 'CholQR + dep', 'GEQRT'}, 'NumColumns', 2);
+        lgd.FontSize = 20;
+        legend('Location','northwest'); 
+        axis off
     nexttile
-    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 3800);
+    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 4000);
+    nexttile
+    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 4000);
 
 end
 
@@ -43,25 +66,26 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
         Data_out(i, 7)  = geqrf_gflop / (Data_in(i, 9)  / 10^6);  %#ok<AGROW  % GEQRT NB 1024
         Data_out(i, 8)  = geqrf_gflop / (Data_in(i, 10)  / 10^6); %#ok<AGROW  % GEQRT NB 2048
     end
-
+    markersize = 15;
     x = [256 512 1024 2048 4096 8192];
-    semilogx(x, Data_out(:, 1), '-^', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)     % GEQRF
+    semilogx(x, Data_out(:, 1), '-^', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     % GEQRF
     hold on
-    semilogx(x, Data_out(:, 2), '-v', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8) % GEQR
+    semilogx(x, Data_out(:, 2), '-v', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8) % GEQR
     hold on
-    semilogx(x, Data_out(:, 3), '-<', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % CHOLQR
+    semilogx(x, Data_out(:, 3), '-<', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    % CHOLQR
     hold on
-    semilogx(x, Data_out(:, 4), '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8)   % CHOLQR+dependencies
+    semilogx(x, Data_out(:, 4), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   % CHOLQR+dependencies
     hold on
-    semilogx(x, Data_out(:, 5), '-*', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % GEQRT NB 256
+    semilogx(x, Data_out(:, 5), '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % GEQRT NB 256
     hold on
-    semilogx(x, Data_out(:, 6), '-*', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % GEQRT NB 512
+    semilogx(x, Data_out(:, 6), '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % GEQRT NB 512
     hold on
-    semilogx(x, Data_out(:, 7), '-*', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % GEQRT NB 1024
+    semilogx(x, Data_out(:, 7), '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % GEQRT NB 1024
     hold on
-    semilogx(x, Data_out(:, 8), '-*', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % GEQRT NB 2048
+    semilogx(x, Data_out(:, 8), '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % GEQRT NB 2048
     xticks([512 2048 8192]);
-    xlim([0 8192]);
+    xlim_padding = 0.1;
+    xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([0 y_lim]);
 
     ax = gca;
@@ -85,18 +109,19 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     end
     switch plot_position
         case 1
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 2
             set(gca,'Yticklabel',[])
-            lgd=legend('GEQRF', 'LATSQR', 'CholQR', 'CholQR + dep', 'GEQRT');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 3
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
         case 4
             set(gca,'Yticklabel',[])
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
     end
 end
 

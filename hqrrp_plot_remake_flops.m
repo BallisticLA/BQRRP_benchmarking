@@ -13,7 +13,7 @@ function[] = hqrrp_plot_remake_flops(filename_Intel, filename_AMD_AOCL, filename
     num_plot_rows = 3;
     num_plot_cols = 3;
 
-    tiledlayout(num_plot_rows, num_plot_cols, "TileSpacing", "tight");
+    tiledlayout(num_plot_rows, num_plot_cols + 1, "TileSpacing", "tight");
     process_and_plot(Data_in_Intel, num_thread_nums, num_mat_sizes, num_iters, num_algs, plot_num_Intel, show_labels, num_plot_rows, num_plot_cols);
     process_and_plot(Data_in_AMD_MKL, num_thread_nums+1, num_mat_sizes, num_iters, num_algs, plot_num_AMD_AOCL, show_labels, num_plot_rows, num_plot_cols);
     process_and_plot(Data_in_AMD_AOCL, num_thread_nums+1, num_mat_sizes, num_iters, num_algs, plot_num_AMD_MKL, show_labels, num_plot_rows, num_plot_cols);
@@ -47,46 +47,63 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         dim = 1000;
     end
     x = [1000 2000 3000 4000 5000 6000 7000 8000 9000 10000];
+    markersize = 15;
+
+    nexttile(plot_num)
+    for j = 1:num_thread_nums
+        rb_start = num_mat_sizes*(j-1)+1;
+        rb_end   = num_mat_sizes*j;
+        semilogy(x, Data_out(rb_start:rb_end, 1), marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP GFLOPS
+        hold on
+    end
+    plot_config(plot_num, 2, 200, [1 5 10 50 100 150 200], show_labels, num_plot_rows, num_plot_cols);
+
+    % Phantom plot at the end of the first row
+    if num_plot_cols == 3 && plot_num == 3
+        nexttile(plot_num + 1);
+        for j = 1:num_thread_nums
+            plot(nan, nan, marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8)
+            hold on
+        end
+        lgd=legend({'1 thread', '4 threads', '16 threads', '64 threads', '128 threads', '448 threads'}, 'NumColumns', 2);
+        lgd.FontSize = 20;
+        legend('Location','northwest');
+        % Hiding the phantom axis.
+        axis off
+    end
+    plot_num = plot_num + num_plot_cols + 1;
+
+    nexttile(plot_num)
+    for j = 1:num_thread_nums
+        rb_start = num_mat_sizes*(j-1)+1;
+        rb_end   = num_mat_sizes*j;
+        semilogy(x, Data_out(rb_start:rb_end, 2), marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8) % GEQP3 GFLOPS
+        hold on
+    end
+    plot_config(plot_num, 12, 2000, [25 50 100 500 1000 1500 2000], show_labels, num_plot_rows, num_plot_cols);
     
-    nexttile(plot_num)
-    for j = 1:num_thread_nums
-        rb_start = num_mat_sizes*(j-1)+1;
-        rb_end   = num_mat_sizes*j;
-        semilogy(x, Data_out(rb_start:rb_end, 1), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % HQRRP GFLOPS
-        hold on
+    % Phantom plot at the end of the first row
+    if num_plot_cols == 3 && plot_num == 7
+        nexttile(plot_num + 1);
+        % Hiding the phantom axis.
+        axis off
     end
-    plot_config(plot_num, 2, 200, [1 10 50 100 150 200], show_labels, num_plot_rows, num_plot_cols);
-    plot_num = plot_num + num_plot_cols;
+    plot_num = plot_num + num_plot_cols + 1;
 
     nexttile(plot_num)
     for j = 1:num_thread_nums
         rb_start = num_mat_sizes*(j-1)+1;
         rb_end   = num_mat_sizes*j;
-        semilogy(x, Data_out(rb_start:rb_end, 2), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % GEQP3 GFLOPS
+        semilogy(x, Data_out(rb_start:rb_end, 3), marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8) % GEQRF GFLOPS
         hold on
     end
-    plot_config(plot_num, 12, 2000, [100 500 1000 1500 2000], show_labels, num_plot_rows, num_plot_cols);
-    plot_num = plot_num + num_plot_cols;
-
-    nexttile(plot_num)
-    for j = 1:num_thread_nums
-        rb_start = num_mat_sizes*(j-1)+1;
-        rb_end   = num_mat_sizes*j;
-        semilogy(x, Data_out(rb_start:rb_end, 3), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % GEQRF GFLOPS
-        hold on
-    end
-    plot_config(plot_num, 2.5, 170, [10 50 100 150], show_labels, num_plot_rows, num_plot_cols);
-
+    plot_config(plot_num, 2.5, 170, [5 10 50 100 150], show_labels, num_plot_rows, num_plot_cols);
 end
 
 function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels, num_plot_rows, num_plot_cols)
-    if plot_num == num_plot_cols
-        lgd=legend('threads=1', 'threads=4', 'threads=16', 'threads=64', 'threads=128', '448 threads');
-        lgd.FontSize = 20;
-        legend('Location','northeastoutside');
-    end
     ylim([y_min_lim y_max_lim]);
-    xlim([0 10000]);
+    xlim_padding = 0.1;
+    xlim([0, 10000*(1+xlim_padding)])
     xticks([2000 4000 6000 8000 10000]);
     yticks(y_ticks);
     ax = gca;
@@ -103,14 +120,14 @@ function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels, n
                 title('Zen4c + MKL', 'FontSize', 20);
             case 3
                 title('Zen4c + AOCL', 'FontSize', 20);
-            case 4
+            case 5
                 ylabel('GEQRF GFLOP/s', 'FontSize', 20);
-            case 7
+            case 9
                 ylabel('GEQP3 GFLOP/s', 'FontSize', 20);
                 xlabel('dim', 'FontSize', 20);
-            case 8
+            case 10
                 xlabel('dim', 'FontSize', 20);
-            case 9
+            case 11
                 xlabel('dim', 'FontSize', 20);
         end
     end
@@ -123,17 +140,17 @@ function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels, n
         case 3
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
-        case 4
-            set(gca,'Xticklabel',[])
         case 5
-            set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
         case 6
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
-        case 8
+        case 7
             set(gca,'Yticklabel',[])
-        case 9
+            set(gca,'Xticklabel',[])
+        case 10
+            set(gca,'Yticklabel',[])
+        case 11
             set(gca,'Yticklabel',[])
     end
 end

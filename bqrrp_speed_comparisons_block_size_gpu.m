@@ -41,13 +41,14 @@ function[h_out] = process_and_plot(Data_in, num_block_sizes, rows, cols, plot_po
     x = [32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448, 480, 512, ...
          640, 768, 896, 1024, 1152, 1280, 1408, 1536, 1664, 1792, 1920, 2048];
 
-    h1 = plot(x, Data_out(:, 1), '-<', 'Color', '#EDB120', 'MarkerSize', 18, 'LineWidth', 1.8); hold on
-    h2 = plot(x, Data_out(:, 2), '->', 'Color', 'black',   'MarkerSize', 18, 'LineWidth', 1.8); hold on
-    h3 = plot(x, Data_out(:, 3), '-',  'Color', 'blue',    'MarkerSize', 18, 'LineWidth', 1.8); hold on
+    markersize = 15;
+    h1 = plot(x, Data_out(:, 1), '-<', 'Color', '#EDB120', 'MarkerSize', markersize, 'LineWidth', 1.8); hold on
+    h2 = plot(x, Data_out(:, 2), '->', 'Color', 'black',   'MarkerSize', markersize, 'LineWidth', 1.8); hold on
+    h3 = plot(x, Data_out(:, 3), '-',  'Color', 'red',    'MarkerSize', markersize, 'LineWidth', 1.8); hold on
 
     h_out = [h1, h2, h3];
 
-    xlim([32 2048]);
+    xlim([5, 2100])
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;

@@ -14,15 +14,36 @@ function[] = bqrrp_subroutine_performance_apply_q(filename_Intel, filename_AMD, 
     Data_in_AMD_64k   = Data_in_AMD_64k((2 * num_block_sizes * num_iters + 1):end, :);
 
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(2, 2,"TileSpacing","tight")
+    tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 2700);
     nexttile
     process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 2700);
     nexttile
-    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 2900);
+        % Phantom plot
+        markersize = 15;
+        plot(nan, nan, '-o', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-d', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-<', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '->', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-^', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-v', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        hold on
+        plot(nan, nan, '-*', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
+        set(gca,'Yticklabel',[])
+        lgd=legend({'ORMQR', 'GEMQRT n_{b}=256', 'GEMQRT n_{b}=512', 'GEMQRT n_{b}=1024', 'GEMQRT n_{b}=2048', 'GEMQRT n_{b}=4096', 'GEMQRT n_{b}=8192'}, 'NumColumns', 1);
+        lgd.FontSize = 20;
+        legend('Location','northwest'); 
+        axis off
     nexttile
-    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 2900);
+    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 3000);
+    nexttile
+    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 3000);
 
 
 end
@@ -51,21 +72,23 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     end
     
     x = [256 512 1024 2048 4096 8192];
-    semilogx(x, Data_out(:, 1), '-o', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8)
+    markersize = 15;
+    semilogx(x, Data_out(:, 1), '-o', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 2), '-d', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 2), '-d', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 3), '-<', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 3), '-<', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 4), '->', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 4), '->', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 5), '-^', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 5), '-^', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 6), '-v', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 6), '-v', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
     hold on
-    semilogx(x, Data_out(:, 7), '-*', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)
+    semilogx(x, Data_out(:, 7), '-*', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)
 
-    xlim([0 8192]);
+    xlim_padding = 0.1;
+    xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([0 y_lim]);
 
     ax = gca;
@@ -89,18 +112,19 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     end
     switch plot_position
         case 1
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 2
             set(gca,'Yticklabel',[])
-            lgd=legend('ORMQR', 'GEMQRT n_{b}=256', 'GEMQRT n_{b}=512', 'GEMQRT n_{b}=1024', 'GEMQRT n_{b}=2048', 'GEMQRT n_{b}=4096', 'GEMQRT n_{b}=8192');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 3
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
         case 4
             set(gca,'Yticklabel',[])
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
     end
 end
 

@@ -1,24 +1,35 @@
-function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, filename_AMD, fig_path, rows, cols, num_mat_sizes, num_iters, num_algs, show_labels)
+function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, filename_AMD, rows, cols, num_mat_sizes, num_iters, num_algs, show_labels)
 
     Data_in_Intel = readfile(filename_Intel, 7);
     Data_in_AMD   = readfile(filename_AMD, 7);
     % Wide
-    figure('Name', 'fig_18_bqrrp_performance_varying_mat_size_wide', 'NumberTitle', 'off');
-    tiledlayout(1, 2,"TileSpacing","compact")
+    tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 3, show_labels, 4900)
+    process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 1, show_labels, 5000)
     nexttile
-    process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 4, show_labels, 4900)
-    fig_save(gcf, fig_path, 13, 5.5);
-
+    process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 2, show_labels, 5000)
+    nexttile
+        % Phantom plot
+        markersize = 15;
+        plot(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
+        hold on
+        plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8)  
+        hold on
+        plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
+        hold on
+        plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     
+        hold on
+        plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)   
+        set(gca,'Yticklabel',[])
+        lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
+        lgd.FontSize = 20;
+        legend('Location','northwest'); 
+        axis off
     % Tall
-    figure('Name', 'fig_17_bqrrp_performance_varying_mat_size_tall', 'NumberTitle', 'off');
-    tiledlayout(1, 2,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 1, show_labels, 4200)
+    process_and_plot(Data_in_Intel(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 3, show_labels, 4300)
     nexttile
-    process_and_plot(Data_in_AMD(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 2, show_labels, 4200)
-    fig_save(gcf, fig_path, 13, 5.5);
+    process_and_plot(Data_in_AMD(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 4, show_labels, 4300)
 end
 
 
@@ -40,22 +51,23 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     end
 
     x = [8000 16000 32000 64000];
-
-    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8)   % BQRRP_CQR
+    markersize = 15;
+    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   % BQRRP_CQR
     hold on
-    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8)   % BQRRP_HQR
+    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8)   % BQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_BASIC
+    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_BASIC
     %hold on
-    %loglog(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_CQR
+    %loglog(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_CQR
     %hold on
-    %loglog(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_HQR
+    %loglog(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 6), '-o', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)     % GEQRF
+    loglog(x, Data_out(:, 6), '-o', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     % GEQRF
     hold on
-    loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
+    loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    % GEQP3
 
-    xlim([0 64000]);
+    xlim_padding = 0.1;
+    xlim([x(1)*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([5 y_lim]);
     yticks([10, 50, 250, 500, 1000, 2000, 4000]);
     ax = gca;
@@ -70,39 +82,29 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
         switch plot_position
             case 1
                 title('Intel CPU', 'FontSize', 20);
-                xlabel('m (tall)', 'FontSize', 20); 
+                xlabel('n (wide)', 'FontSize', 20); 
             case 2
                 title('AMD CPU', 'FontSize', 20);
-                xlabel('m (tall)', 'FontSize', 20);
+                xlabel('n (wide)', 'FontSize', 20);
             case 3
                 title('Intel CPU', 'FontSize', 20);
-                xlabel('n (wide)', 'FontSize', 20);
+                xlabel('m (tall)', 'FontSize', 20);
             case 4
                 title('AMD CPU', 'FontSize', 20);
-                xlabel('n (wide)', 'FontSize', 20);
+                xlabel('m (tall)', 'FontSize', 20);
         end
     end
 
     switch plot_position
         case 1
-            xticks([8000 16000 32000 64000]);
-            xticklabels({'8000', '', '32000', ''})
+            set(gca,'Xticklabel',[])
         case 2
             set(gca,'Yticklabel',[])
-            lgd=legend('BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
-            set(gca,'Yticklabel',[])
-            xticks([8000 16000 32000 64000]);
-            xticklabels({'8000', '', '32000', ''})
+            set(gca,'Xticklabel',[])
         case 3
             xticks([8000 16000 32000 64000]);
             xticklabels({'8000', '', '32000', ''})
         case 4
-            set(gca,'Yticklabel',[])
-            lgd=legend('BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
             set(gca,'Yticklabel',[])
             xticks([8000 16000 32000 64000]);
             set(gca,'Yticklabel',[])

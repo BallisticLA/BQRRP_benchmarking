@@ -19,15 +19,15 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
         % Below ensures that the legend is places at a reasonable distance
         % from the second subplot in the figure.
         if plot_position == 3
-            plot(nan, nan, '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8);   % BQRRP_CQR
+            plot(nan, nan, '->', 'Color', 'black', "MarkerSize", 15,'LineWidth', 1.8);   % BQRRP_CQR
             hold on
-            plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8); % BQRRP_HQR
+            plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", 15,'LineWidth', 1.8); % BQRRP_HQR
             hold on
-            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8); % HQRRP_BASIC
+            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 15,'LineWidth', 1.8); % HQRRP_BASIC
             hold on
-            plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8);     % GEQRF
+            plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", 15,'LineWidth', 1.8);     % GEQRF
             hold on
-            plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8);    % GEQP3
+            plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", 15,'LineWidth', 1.8);    % GEQP3
             lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
             lgd.FontSize = 20;
             legend('Location','northwest');

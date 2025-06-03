@@ -8,7 +8,7 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(num_thread_nums, 2,"TileSpacing","compact")
+    tiledlayout(num_thread_nums, 3,"TileSpacing","compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(((i-1)*num_block_sizes*num_iters+1):(i*num_block_sizes*num_iters),:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
@@ -16,6 +16,21 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
         nexttile
         process_and_plot(Data_in_AMD(((i-1)*num_block_sizes*num_iters+1):(i*num_block_sizes*num_iters),:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
         plot_position = plot_position + 1;
+        nexttile
+        % Below ensures that the legend is places at a reasonable distance
+        % from the second subplot in the figure.
+        if plot_position == 3
+            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 15,'LineWidth', 1.8) % HQRRP_BASIC
+            hold on
+            plot(nan, nan, '  ', 'Color', 'red', "MarkerSize", 15,'LineWidth', 1.8)     % GEQRF
+            hold on
+            plot(nan, nan, '  ', 'Color', 'blue', "MarkerSize", 15,'LineWidth', 1.8)    % GEQP3
+            lgd=legend({'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
+            lgd.FontSize = 20;
+            legend('Location','northwest');
+        end
+        % Hiding the phantom axis.
+        axis off
     end
 end
 
@@ -40,16 +55,17 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
 
     
     x = [5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000];
-
-    loglog(x, Data_out(:, 1), '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_BASIC
+    markersize = 15;
+    loglog(x, Data_out(:, 1), '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_BASIC
     hold on
-    loglog(x, Data_out(:, 2), '  ', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)     % GEQRF
+    loglog(x, Data_out(:, 2), '  ', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     % GEQRF
     hold on
-    loglog(x, Data_out(:, 3), '  ', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
+    loglog(x, Data_out(:, 3), '  ', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    % GEQP3
 
-    xlim([0 8000]);
+    xlim_padding = 0.1;
+    xlim([x(1)*(1-xlim_padding), x(end)*(1+xlim_padding)]);
     ylim([10 y_lim]);
-    yticks([0, 50, 150, 250, 500, 4000]);
+    yticks([0, 5, 10 50, 150, 500, 1500, 3800]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
@@ -83,15 +99,12 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     switch plot_position
         case 2
             set(gca,'Yticklabel',[])
-            lgd=legend('HQRRP', 'GEQRF', 'GEQP3');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
         case 7
             xticks([5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000]);
-            xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
+            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})
         case 8
             xticks([5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000]);
-            xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
+            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})
     end
 end
 

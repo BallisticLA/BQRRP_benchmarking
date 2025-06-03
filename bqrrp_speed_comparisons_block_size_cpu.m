@@ -4,11 +4,28 @@ function[] = bqrrp_speed_comparisons_block_size_cpu(filename_Intel, filename_AMD
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(2, 2,"TileSpacing","compact")
+    tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 5700);
     nexttile
     process_and_plot(Data_in_AMD(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 5700);
+    nexttile
+        % Phantom plot
+        markersize = 15;
+        loglog(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
+        hold on
+        loglog(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8) 
+        hold on
+        loglog(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
+        hold on
+        loglog(nan, nan, '  ', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)    
+        hold on
+        loglog(nan, nan, '  ', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)  
+        set(gca,'Yticklabel',[])
+        lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
+        lgd.FontSize = 20;
+        legend('Location','northwest'); 
+        axis off
     nexttile
     process_and_plot(Data_in_Intel(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 6300);
     nexttile
@@ -44,22 +61,23 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     else
         x = [250 500 1000 2000 4000 8000];
     end
-
-    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8)   % BQRRP_CQR
+    markersize = 15;
+    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   % BQRRP_CQR
     hold on
-    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8)   % BQRRP_HQR
+    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8)   % BQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_BASIC
+    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_BASIC
     %hold on
-    %semilogx(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_CQR
+    %semilogx(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_CQR
     %hold on
-    %semilogx(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8) % HQRRP_HQR
+    %semilogx(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) % HQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 6), '  ', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8)     % GEQRF
+    loglog(x, Data_out(:, 6), '  ', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     % GEQRF
     hold on
-    loglog(x, Data_out(:, 7), '  ', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8)    % GEQP3
+    loglog(x, Data_out(:, 7), '  ', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    % GEQP3
 
-    xlim([0 8192]);
+    xlim_padding = 0.1;
+    xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([10 y_lim]);
     yticks([10, 100, 1000, 5000]);
     ax = gca;
@@ -83,18 +101,19 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     end
     switch plot_position
         case 1
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 2
             set(gca,'Yticklabel',[])
-            lgd=legend('BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3');
-            lgd.FontSize = 20;
-            legend('Location','northeastoutside'); 
-            xticks([512 2048 8192]);
+            %xticks([512 2048 8192]);
+            xticks([256 1024 4096]);
         case 3
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
         case 4
             set(gca,'Yticklabel',[])
-            xticks([500 2000 8000]);
+            %xticks([500 2000 8000]);
+            xticks([250 1000 4000]);
     end
 end
 

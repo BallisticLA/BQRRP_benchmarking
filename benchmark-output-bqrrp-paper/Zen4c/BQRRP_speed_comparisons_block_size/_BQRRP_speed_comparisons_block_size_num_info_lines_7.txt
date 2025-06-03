@@ -27,7 +27,7 @@ File format: 7 columns, containing time for each algorithm: BQRRP+CholQR, BQRRP+
 Num OMP threads:448
 Input type:2
 Input size:64000 by 64000
-Additional parameters: BQRRP block sizes: 500, 1000, 2000, 4000, 8000, num runs per size 3 BQRRP d factor: 1.000000
+Additional parameters: BQRRP block sizes: 250, 500, 1000, 2000, 4000, 8000, num runs per size 3 BQRRP d factor: 1.000000
 487927027,  380731540,  1237838636,  0,  0,  57666395,  22016026160,
 493109472,  396054169,  1234044126,  0,  0,  56468024,  22037179313,
 493109472,  396054169,  1234044126,  0,  0,  56468024,  22037179313,

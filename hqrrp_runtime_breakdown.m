@@ -142,9 +142,9 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, plot_position
             lgd.FontSize = 20;
             legend('Location','northeastoutside'); 
         case 7
-            xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
+            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})
         case 8
-            xticklabels({'', '10', '', '50', '', '250', '', '1000', '', '4000'})
+            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})
     end
 end
 function[Data_out] = data_preprocessing_best(Data_in, num_col_sizes, num_iters)
