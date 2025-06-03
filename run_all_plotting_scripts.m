@@ -7,7 +7,7 @@ fig_path          = "output_figures/";
 benchmarking_date = "";
 
 show_lables = 0;
-
+%{
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size_rectangular/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_mat_size_rectangular/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename1, filename2, fig_path, 8000, 4000, 4, 3, 7, show_lables);
@@ -46,7 +46,7 @@ figure('Name', 'fig_11_bqrrp_performance_varying_mat_size', 'NumberTitle', 'off'
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_mat_size/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_mat_size_cpu(filename1, filename2, 8000, 8000, 3, 4, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 11.5);
+fig_save(gcf, fig_path, 12, 11.5);
 
 figure('Name', 'fig_10_bqrrp_performance_varying_block_size', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -94,7 +94,7 @@ filename1 = CPU_path_1 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRR
 filename2 = CPU_path_2 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
 bqrrp_subroutine_performance_wide_qrcp(filename1, filename2, 256, 2^16, 250, 64000, 6, 3, 2, show_lables);
 fig_save(gcf, fig_path, 11.5, 10);
-
+%}
 figure('Name', 'fig_1_hqrrp_plot_remake_performance_ratios', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";

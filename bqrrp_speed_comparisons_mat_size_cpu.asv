@@ -7,7 +7,7 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
     plot_position = 1;
 
     %128 threads - 1 thread
-    tiledlayout(num_thread_nums, 3,"TileSpacing", "compact")
+    tiledlayout(num_thread_nums, 2,"TileSpacing","compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(num_mat_sizes*num_iters*(i-1)+1:num_mat_sizes*num_iters*i,:), num_mat_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(:,i))
@@ -15,25 +15,6 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
         nexttile
         process_and_plot(Data_in_AMD(num_mat_sizes*num_iters*(i-1)+1:num_mat_sizes*num_iters*i,:), num_mat_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(:,i))
         plot_position = plot_position + 1;
-        nexttile
-        % Below ensures that the legend is places at a reasonable distance
-        % from the second subplot in the figure.
-        if plot_position == 3
-            plot(nan, nan, '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8);   % BQRRP_CQR
-            hold on
-            plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8); % BQRRP_HQR
-            hold on
-            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8); % HQRRP_BASIC
-            hold on
-            plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8);     % GEQRF
-            hold on
-            plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8);    % GEQP3
-            lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
-            lgd.FontSize = 20;
-            legend('Location','northwest');
-        end
-        % Hiding the phantom axis.
-        axis off
     end
 end
 
@@ -56,29 +37,27 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
 
     x = [8000 16000 32000];
 
-    markersize = 15;
-    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8);   % BQRRP_CQR
+    loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", 18,'LineWidth', 1.8);   % BQRRP_CQR
     hold on
-    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8);   % BQRRP_HQR
+    loglog(x, Data_out(:, 2), '-<', 'Color', '#EDB120', "MarkerSize", 18,'LineWidth', 1.8);   % BQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8); % HQRRP_BASIC
+    loglog(x, Data_out(:, 3), '-d', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8); % HQRRP_BASIC
     %hold on
-    %loglog(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8); % HQRRP_CQR
+    %loglog(x, Data_out(:, 4), '->', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8); % HQRRP_CQR
     %hold on
-    %loglog(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8); % HQRRP_HQR
+    %loglog(x, Data_out(:, 5), '-<', 'Color', 'magenta', "MarkerSize", 18,'LineWidth', 1.8); % HQRRP_HQR
     hold on
-    loglog(x, Data_out(:, 6), '-o', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8);     % GEQRF
+    loglog(x, Data_out(:, 6), '-o', 'Color', 'red', "MarkerSize", 18,'LineWidth', 1.8);     % GEQRF
     hold on
-    loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8);    % GEQP3
+    loglog(x, Data_out(:, 7), '-s', 'Color', 'blue', "MarkerSize", 18,'LineWidth', 1.8);    % GEQP3
 
-    xlim_padding = 0.1;
-    xlim([x(1)*(1-xlim_padding), x(end)*(1+xlim_padding)]);
-    ylim([0.5*7 1.3*y_lim]);
+    xlim([0 32000]);
+    ylim([7 y_lim]);
     yticks([10, 50, 200, 500, 1500, 3800]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
-    ax.PlotBoxAspectRatio = [10,10,1];
+    ax.PlotBoxAspectRatio = [10,9,1];
     grid on
     
     if show_labels 
@@ -106,7 +85,18 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     if ~mod(plot_position, 2)
         set(gca,'Yticklabel',[])
     end
-    switch plot_position 
+    switch plot_position
+   
+
+            % Placing the legend directly above the plot
+            %{
+            lgd.Orientation = 'horizontal';
+            ax_pos = get(gca, 'Position');
+            lgd_pos = get(lgd, 'Position');
+            lgd_pos(1) = ax_pos(1) - 0.1;  
+            lgd_pos(2) = ax_pos(2) + 0.19;
+            set(lgd, 'Position', lgd_pos);
+            %}
         case 2
             set(gca,'Yticklabel',[])
         case 7

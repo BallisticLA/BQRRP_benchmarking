@@ -56,7 +56,7 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         semilogy(x, Data_out(rb_start:rb_end, 2), marker_array{j}, 'Color', color_array{j}, "MarkerSize", 18,'LineWidth', 1.8) % GEQP3 time / GEQRF time
         hold on
     end
-    plot_config(plot_num, 1.5, 100, [0 1 10 25 50, 100], show_labels, num_plot_rows, num_plot_cols);
+    plot_config(plot_num, 1.5, 100, [0 1 2 5 10 25 50, 100], show_labels, num_plot_rows, num_plot_cols);
 
 end
 
