@@ -6,9 +6,9 @@ function[] = bqrrp_speed_comparisons_block_size_cpu(filename_Intel, filename_AMD
     % Horizontally stacking Intel and AMD machines
     tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 5700);
+    process_and_plot(Data_in_Intel(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 6500);
     nexttile
-    process_and_plot(Data_in_AMD(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 5700);
+    process_and_plot(Data_in_AMD(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 6500);
     nexttile
         % Phantom plot
         markersize = 15;
@@ -27,9 +27,9 @@ function[] = bqrrp_speed_comparisons_block_size_cpu(filename_Intel, filename_AMD
         legend('Location','northwest'); 
         axis off
     nexttile
-    process_and_plot(Data_in_Intel(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 6300);
+    process_and_plot(Data_in_Intel(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 7000);
     nexttile
-    process_and_plot(Data_in_AMD(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 6300);
+    process_and_plot(Data_in_AMD(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 6500);
 end
 
 
@@ -79,7 +79,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xlim_padding = 0.1;
     xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([10 y_lim]);
-    yticks([10, 100, 1000, 5000]);
+    yticks([10, 100, 1000, 2500, 6500]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;

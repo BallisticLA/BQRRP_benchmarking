@@ -90,6 +90,11 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xlim_padding = 0.1;
     xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([0 y_lim]);
+    if y_lim == 3000
+        yticks([0 500 1000 1500 2000 2500 3000]);
+    else 
+        yticks([0 500 1000 1500 2000 2700 3000]);
+    end
 
     ax = gca;
     ax.XAxis.FontSize = 20;

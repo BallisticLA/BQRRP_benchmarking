@@ -15,9 +15,9 @@ function[] = bqrrp_subroutine_performance_tall_qr(filename_Intel, filename_AMD, 
     % Horizontally stacking Intel and AMD machines
     tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 3200);
+    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 3100);
     nexttile
-    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 3200);
+    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 3100);
     nexttile
         % Phantom plot
         markersize = 15;
@@ -87,6 +87,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xlim_padding = 0.1;
     xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
     ylim([0 y_lim]);
+    yticks([0 1000 2000 3100 4000]);
 
     ax = gca;
     ax.XAxis.FontSize = 20;

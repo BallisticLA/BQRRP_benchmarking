@@ -4,7 +4,7 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
     Data_in_AMD = readfile(filename_AMD, 7);
 
     plot_position = 1;
-    y_lim = [400, 1600, 3800, 4200];
+    y_lim = [500, 1700, 4200, 4600];
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines

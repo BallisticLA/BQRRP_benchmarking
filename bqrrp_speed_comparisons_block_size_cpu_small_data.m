@@ -3,7 +3,7 @@ function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, f
     Data_in_AMD = readfile(filename_AMD, 7);
 
     plot_position = 1; 
-    y_lim_max = [200, 320, 810];
+    y_lim_max = [250, 500, 1000];
     y_lim_min = [0.1, 0.5, 2];
 
     % Horizontally stacking Intel and AMD machines
@@ -107,7 +107,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xlim([x(1)*(1-xlim_padding), x(end)*(1+xlim_padding)]);
 
     xticks(x)
-    yticks([1 10 50 100 250 500])
+    yticks([1 10 50 250 500 1000])
 
     ylim([y_lim_min y_lim_max]);
     ax = gca;

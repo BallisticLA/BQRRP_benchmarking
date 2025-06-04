@@ -19,6 +19,7 @@ filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmark
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_block_size_cpu_small_data(filename1, filename2, 1000, 1000, 3, 8, 3, 7, show_lables);
 fig_save(gcf, fig_path, 12.5, 10.5);
+
 figure('Name', 'fig_15_hqrrp_runtime_breakdown', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "HQRRP_runtime_breakdown/" + benchmarking_date + "_HQRRP_runtime_breakdown_num_info_lines_7.txt";

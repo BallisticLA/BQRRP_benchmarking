@@ -16,9 +16,9 @@ function[] = bqrrp_subroutine_performance_wide_qrcp(filename_Intel, filename_AMD
     % Horizontally stacking Intel and AMD machines
     tiledlayout(2, 3,"TileSpacing","compact")
     nexttile
-    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 1300);
+    process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 1500);
     nexttile
-    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 1300);
+    process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 1500);
     nexttile
         % Phantom plot
         markersize = 15;
@@ -31,9 +31,9 @@ function[] = bqrrp_subroutine_performance_wide_qrcp(filename_Intel, filename_AMD
         legend('Location','northwest'); 
         axis off
     nexttile
-    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 2200);
+    process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 2500);
     nexttile
-    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 2200);
+    process_and_plot(Data_in_AMD_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 4, show_labels, 2500);
 
 end
 
@@ -52,13 +52,14 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
 
     x = [256 512 1024 2048 4096 8192];
     markersize = 15;
-    semilogx(x, Data_out(:, 1), '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8) % QP3
+    loglog(x, Data_out(:, 1), '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8) % QP3
     hold on
-    semilogx(x, Data_out(:, 2), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)  % LUQR
+    loglog(x, Data_out(:, 2), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)  % LUQR
     xticks([512 2048 8192]);
     xlim_padding = 0.1;
     xlim([200*(1-xlim_padding), x(end)*(1+xlim_padding)])
-    ylim([0 y_lim]);
+    ylim([1 y_lim]);
+    yticks([2 10 50 250 700 1500 2500]);
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
