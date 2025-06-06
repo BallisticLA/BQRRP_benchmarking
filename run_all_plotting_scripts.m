@@ -8,11 +8,11 @@ benchmarking_date = "";
 
 show_lables = 0;
 
-figure('Name', 'fig_18_bqrrp_performance_varying_mat_size_wide_and_tall', 'NumberTitle', 'off');
+figure('Name', 'fig_17_bqrrp_performance_varying_mat_size_wide_and_tall', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_mat_size_rectangular/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 filename2 = CPU_path_2 + "BQRRP_speed_comparisons_mat_size_rectangular/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename1, filename2, 8000, 4000, 4, 3, 7, show_lables);
-fig_save(gcf, fig_path, 12, 8);
+fig_save(gcf, fig_path, 12, 6);
 
 figure('Name', 'fig_16_bqrrp_performance_varying_block_size_small_inputs', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";
@@ -83,7 +83,7 @@ figure('Name', 'fig_4_apply_q_trans_subroutine_performance', 'NumberTitle', 'off
 filename1 = CPU_path_1 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
 filename2 = CPU_path_2 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
 bqrrp_subroutine_performance_apply_q(filename1, filename2, 2^16, 256, 64000, 250, 6, 3, 7, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 11.5, 8);
 
 figure('Name', 'fig_3_tall_qr_subroutine_performance', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
@@ -95,7 +95,7 @@ figure('Name', 'fig_2_wide_qrcp_subroutine_performance', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
 filename2 = CPU_path_2 + "BQRRP_subroutines_speed/" + benchmarking_date + "_BQRRP_subroutines_speed_num_info_lines_10.txt";
 bqrrp_subroutine_performance_wide_qrcp(filename1, filename2, 256, 2^16, 250, 64000, 6, 3, 2, show_lables);
-fig_save(gcf, fig_path, 11.5, 10);
+fig_save(gcf, fig_path, 11.5, 7);
 
 figure('Name', 'fig_1_hqrrp_plot_remake_performance_ratios', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
