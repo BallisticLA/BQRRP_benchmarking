@@ -180,9 +180,6 @@ else
     # Get the benchmark commencement date
     DATETIME=$(date "+%Y-%m-%d-%H:%M:%S")
 
-    echo "Running now:)"
-    exit 0
-
     # PERFORMING BENCHMARK RUNS
     # HQRRP plot remake benchmarks
     for ITEM in "${THREADS_LIST[@]}"; do
