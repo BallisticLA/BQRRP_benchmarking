@@ -147,9 +147,10 @@ else
             fi
             exit 0
         else
-        # Prompt the user to enter the list of threads manually.
-        echo "Enter the list of thread counts separated by spaces (e.g., 4 16 64 128 448):"
-        read -a THREADS_LIST
+            # Prompt the user to enter the list of threads manually.
+            echo "Enter the list of thread counts separated by spaces (e.g., 4 16 64 128 448):"
+            read -a THREADS_LIST
+        fi
     fi
     
     NUMACTL_VAR=""
@@ -178,6 +179,9 @@ else
 
     # Get the benchmark commencement date
     DATETIME=$(date "+%Y-%m-%d-%H:%M:%S")
+
+    echo "Running now:)"
+    exit 0
 
     # PERFORMING BENCHMARK RUNS
     # HQRRP plot remake benchmarks
