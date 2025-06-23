@@ -129,17 +129,27 @@ else
     #MAX_THREADS=$((2 * CPU_SOCKETS * $(nproc --all)))
     MAX_THREADS=$((2 * $(nproc --all)))
     
-    THREADS_LIST=(1)
-    # Exceptional case used for the AMD system with exceptionally large core count
+    THREADS_LIST=()
+    # Case used for the AMD system with exceptionally large core count
     if [[ $MAX_THREADS -eq 448 ]]; then
-        THREADS_LIST=("1" "16" "32" "64" "128" "448")
+        THREADS_LIST=("4" "16" "64" "128" "448")
+    elif [[ $MAX_THREADS -eq 128 ]]; then
+        THREADS_LIST=("4" "16" "64" "128")
     else 
-        LAST_THREAD_NUM=16
-        # Add numbers to the list, doubling each time
-        while (( LAST_THREAD_NUM <= MAX_THREADS )); do
-            THREADS_LIST+=("$LAST_THREAD_NUM")
-            LAST_THREAD_NUM=$((2 * LAST_THREAD_NUM))
-        done
+        # Judging by the number of max threads estimated, neither the Sapphire Rapids, nor the Zen4c systems are in use.
+        # Ask the user if they want to continue benchmarking & request them to enter the number of threads manually.
+        read -p "Judging by the number of max threads estimated, neither the Sapphire Rapids, nor the Zen4c systems are in use. Continue BQRRP CPU benchmarking? (y/n): " user_input
+        if [[ "$user_input" != "y" && "$user_input" != "Y" ]]; then
+            echo "Skipping CPU benchmarks."
+            if [ $RELOAD_SHELL -eq 1 ]; then
+                # Source from bash and spawn a new shell so that the variable change takes place
+                bash -c "source ~/.bashrc && exec bash"
+            fi
+            exit 0
+        else
+        # Prompt the user to enter the list of threads manually.
+        echo "Enter the list of thread counts separated by spaces (e.g., 4 16 64 128 448):"
+        read -a THREADS_LIST
     fi
     
     NUMACTL_VAR=""
