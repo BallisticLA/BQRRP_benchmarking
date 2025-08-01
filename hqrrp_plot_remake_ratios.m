@@ -11,7 +11,7 @@ function[] = hqrrp_plot_remake_ratios(filename_Intel, filename_AMD_MKL, num_mat_
     num_plot_rows = 2;
     num_plot_cols = 2;
 
-    tiledlayout(num_plot_rows, num_plot_cols + 1, "TileSpacing", "tight");
+    tiledlayout(num_plot_rows, num_plot_cols, "TileSpacing", "compact");
     process_and_plot(Data_in_Intel, num_thread_nums, num_mat_sizes, num_iters, num_algs, plot_num_Intel, show_labels, num_plot_cols);
     process_and_plot(Data_in_AMD_MKL, num_thread_nums+1, num_mat_sizes, num_iters, num_algs, plot_num_AMD_MKL, show_labels, num_plot_cols);
 end
@@ -51,18 +51,11 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
     
     % Phantom plot at the end of the first row
     if num_plot_cols == 2 && plot_num == 2
-        nexttile(plot_num + 1);
-        for j = 1:num_thread_nums
-            plot(nan, nan, marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8)
-            hold on
-        end
-        lgd=legend({'1 thread', '4 threads', '16 threads', '64 threads', '128 threads', '448 threads'}, 'NumColumns', 2);
+        lgd=legend({'1 thread', '4 threads', '16 threads', '64 threads', '128 threads', '448 threads'}, 'NumColumns', 1);
         lgd.FontSize = 20;
-        legend('Location','northwest');
-        % Hiding the phantom axis.
-        axis off
+        legend('Location','southeast');
     end
-    plot_num = plot_num + num_plot_cols + 1;
+    plot_num = plot_num + num_plot_cols;
 
     nexttile(plot_num)
     for j = 1:num_thread_nums
@@ -106,7 +99,7 @@ function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels)
         case 2
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
-        case 5
+        case 4
             set(gca,'Yticklabel',[])
     end
 end

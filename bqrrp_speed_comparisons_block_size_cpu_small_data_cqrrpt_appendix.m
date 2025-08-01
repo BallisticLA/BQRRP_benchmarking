@@ -1,13 +1,15 @@
-function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, filename_AMD, rows, cols, num_mat_sizes, num_block_sizes, num_iters, num_algs, show_labels)
+function[] = bqrrp_speed_comparisons_block_size_cpu_small_data_cqrrpt_appendix(filename_Intel, num_mat_sizes, num_block_sizes, num_iters, num_algs, show_labels)
     Data_in_Intel = readfile(filename_Intel, 7);
-    Data_in_AMD = readfile(filename_AMD, 7);
+
+    rows = 500;
+    cols = 500;
 
     plot_position = 1; 
-    y_lim_max = [250, 500, 1000];
+    y_lim_max = [150, 2000];
     y_lim_min = [0.1, 0.5, 2];
 
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(3, 2, "TileSpacing","compact")
+    tiledlayout(2, 1, "TileSpacing","compact")
     data_start = 1;
     data_end   = num_block_sizes*num_iters;
 
@@ -16,15 +18,11 @@ function[] = bqrrp_speed_comparisons_block_size_cpu_small_data(filename_Intel, f
         nexttile
         process_and_plot(Data_in_Intel(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim_max(1, i), y_lim_min(1, i));
         plot_position = plot_position + 1;
-        
-        nexttile
-        process_and_plot(Data_in_AMD(data_start:data_end,:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim_max(1, i), y_lim_min(1, i));
-        plot_position = plot_position + 1;
         data_start = data_end + 1;
-        num_block_sizes = num_block_sizes + 1;
+        num_block_sizes = 11;
         data_end   = data_end + num_block_sizes*num_iters; 
-        rows = rows * 2;
-        cols = cols * 2;
+        rows = 8000;
+        cols = 8000;
     end
 end
 
@@ -53,18 +51,10 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
 
     markersize = 15;
     switch rows
-        case 4096
-            x = [8 16 32 64 128 256 512 1024 2048 4096];
-        case 4000
-            x = [5 10 25 50 125 250 500 1000 2000 4000];
-        case 2048
-            x = [8 16 32 64 128 256 512 1024 2048];
-        case 2000
-            x = [5 10 25 50 125 250 500 1000 2000];
-        case 1024
-            x = [8 16 32 64 128 256 512 1024];
-        case 1000
-            x = [5 10 25 50 125 250 500 1000];
+        case 8000
+            x = [5 10 25 50 125 250 500 1000 2000 4000 8000];
+        case 500
+            x = [5 10 25 50 125 250 500];
     end
 
     loglog(x, Data_out(:, 1), '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   % BQRRP_CQR
@@ -85,7 +75,7 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     xlim([x(1)*(1-xlim_padding), x(end)*(1+xlim_padding)]);
 
     xticks(x)
-    yticks([1 10 50 250 500 1000])
+    yticks([1 10 50 150 500 1000 2000])
 
     ylim([y_lim_min y_lim_max]);
     ax = gca;
@@ -114,24 +104,12 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     switch plot_position
         case 1
             xticklabels({'5', '', '25', '', '125', '', '500', ''})
-        case 2
             markersize = 15;
-            set(gca,'Yticklabel',[])
             lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 1);
             lgd.FontSize = 20;
             legend('Location','northeastoutside'); 
-            set(gca,'Yticklabel',[])
-            xticklabels({'5', '', '25', '', '125', '', '500', ''})
-        case 3
-            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000'})
-        case 4
-            set(gca,'Yticklabel',[])
-            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000'})
-        case 5
-            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', ''})
-        case 6
-            set(gca,'Yticklabel',[])
-            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', ''})
+        case 2
+            xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})
     end
 end
 

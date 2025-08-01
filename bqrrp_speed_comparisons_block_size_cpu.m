@@ -4,28 +4,11 @@ function[] = bqrrp_speed_comparisons_block_size_cpu(filename_Intel, filename_AMD
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(2, 3,"TileSpacing","compact")
+    tiledlayout(2, 2,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 6500);
     nexttile
     process_and_plot(Data_in_AMD(1:num_block_sizes*num_iters,:), num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 6500);
-    nexttile
-        % Phantom plot
-        markersize = 15;
-        loglog(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
-        hold on
-        loglog(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8) 
-        hold on
-        loglog(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
-        hold on
-        loglog(nan, nan, '  ', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)    
-        hold on
-        loglog(nan, nan, '  ', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)  
-        set(gca,'Yticklabel',[])
-        lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
-        lgd.FontSize = 20;
-        legend('Location','northwest'); 
-        axis off
     nexttile
     process_and_plot(Data_in_Intel(num_block_sizes*num_iters+1:end,:), num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 7000);
     nexttile
@@ -107,6 +90,12 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
             set(gca,'Yticklabel',[])
             %xticks([512 2048 8192]);
             xticks([256 1024 4096]);
+            % Phantom plot
+            markersize = 15;
+            set(gca,'Yticklabel',[])
+            lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 1);
+            lgd.FontSize = 20;
+            legend('Location','northeastoutside'); 
         case 3
             %xticks([500 2000 8000]);
             xticks([250 1000 4000]);

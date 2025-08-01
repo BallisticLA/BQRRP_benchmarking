@@ -8,7 +8,7 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
 
     % Vertically stacking 65k adn 64k data
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(num_thread_nums, 3,"TileSpacing","compact")
+    tiledlayout(num_thread_nums, 2, "TileSpacing","compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(((i-1)*num_block_sizes*num_iters+1):(i*num_block_sizes*num_iters),:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
@@ -16,21 +16,6 @@ function[] = hqrrp_speed_comparisons_block_size(filename_Intel, filename_AMD, ro
         nexttile
         process_and_plot(Data_in_AMD(((i-1)*num_block_sizes*num_iters+1):(i*num_block_sizes*num_iters),:), num_block_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(1, i));
         plot_position = plot_position + 1;
-        nexttile
-        % Below ensures that the legend is places at a reasonable distance
-        % from the second subplot in the figure.
-        if plot_position == 3
-            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 15,'LineWidth', 1.8) % HQRRP_BASIC
-            hold on
-            plot(nan, nan, '  ', 'Color', 'red', "MarkerSize", 15,'LineWidth', 1.8)     % GEQRF
-            hold on
-            plot(nan, nan, '  ', 'Color', 'blue', "MarkerSize", 15,'LineWidth', 1.8)    % GEQP3
-            lgd=legend({'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
-            lgd.FontSize = 20;
-            legend('Location','northwest');
-        end
-        % Hiding the phantom axis.
-        axis off
     end
 end
 
@@ -99,6 +84,9 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
     switch plot_position
         case 2
             set(gca,'Yticklabel',[])
+            lgd=legend({'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 1);
+            lgd.FontSize = 20;
+            legend('Location','northeastoutside');
         case 7
             xticks([5, 10, 25, 50, 125, 250, 500, 1000, 2000, 4000, 8000]);
             xticklabels({'5', '', '25', '', '125', '', '500', '', '2000', '', '8000'})

@@ -7,7 +7,7 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
     plot_position = 1;
 
     %128 threads - 1 thread
-    tiledlayout(num_thread_nums, 3,"TileSpacing", "compact")
+    tiledlayout(num_thread_nums, 2, "TileSpacing", "compact")
     for i = 1:num_thread_nums
         nexttile
         process_and_plot(Data_in_Intel(num_mat_sizes*num_iters*(i-1)+1:num_mat_sizes*num_iters*i,:), num_mat_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(:,i))
@@ -15,25 +15,6 @@ function[] = bqrrp_speed_comparisons_mat_size_cpu(filename_Intel, filename_AMD, 
         nexttile
         process_and_plot(Data_in_AMD(num_mat_sizes*num_iters*(i-1)+1:num_mat_sizes*num_iters*i,:), num_mat_sizes, num_iters, num_algs, rows, cols, plot_position, show_labels, y_lim(:,i))
         plot_position = plot_position + 1;
-        nexttile
-        % Below ensures that the legend is places at a reasonable distance
-        % from the second subplot in the figure.
-        if plot_position == 3
-            plot(nan, nan, '->', 'Color', 'black', "MarkerSize", 15,'LineWidth', 1.8);   % BQRRP_CQR
-            hold on
-            plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", 15,'LineWidth', 1.8); % BQRRP_HQR
-            hold on
-            plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", 15,'LineWidth', 1.8); % HQRRP_BASIC
-            hold on
-            plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", 15,'LineWidth', 1.8);     % GEQRF
-            hold on
-            plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", 15,'LineWidth', 1.8);    % GEQP3
-            lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
-            lgd.FontSize = 20;
-            legend('Location','northwest');
-        end
-        % Hiding the phantom axis.
-        axis off
     end
 end
 
@@ -78,7 +59,6 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
-    ax.PlotBoxAspectRatio = [10,10,1];
     grid on
     
     if show_labels 
@@ -109,6 +89,9 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
     switch plot_position 
         case 2
             set(gca,'Yticklabel',[])
+            lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 1);
+            lgd.FontSize = 20;
+            legend('Location','northeastoutside');
         case 7
             xtickangle(45);
             xticks([8000 16000 32000]);

@@ -3,29 +3,11 @@ function[] = bqrrp_speed_comparisons_mat_size_rectangle_cpu(filename_Intel, file
     Data_in_Intel = readfile(filename_Intel, 7);
     Data_in_AMD   = readfile(filename_AMD, 7);
     % Wide
-    tiledlayout(2, 3,"TileSpacing","compact")
+    tiledlayout(2, 2,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 1, show_labels, 5000)
     nexttile
     process_and_plot(Data_in_AMD(num_mat_sizes*num_iters+1:end,:), num_mat_sizes, num_iters, num_algs, cols, rows, 2, show_labels, 5000)
-    nexttile
-        % Phantom plot
-        markersize = 15;
-        plot(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
-        hold on
-        plot(nan, nan, '-<', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8)  
-        hold on
-        plot(nan, nan, '-d', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
-        hold on
-        plot(nan, nan, '-o', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     
-        hold on
-        plot(nan, nan, '-s', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)   
-        set(gca,'Yticklabel',[])
-        lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 2);
-        lgd.FontSize = 20;
-        legend('Location','northwest'); 
-        axis off
-    % Tall
     nexttile
     process_and_plot(Data_in_Intel(1:num_mat_sizes*num_iters,:), num_mat_sizes, num_iters, num_algs, rows, cols, 3, show_labels, 4300)
     nexttile
@@ -101,6 +83,11 @@ function[] = process_and_plot(Data_in, num_mat_sizes, num_iters, num_algs, rows,
         case 2
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
+            markersize = 15;
+            set(gca,'Yticklabel',[])
+            lgd=legend({'BQRRP\_CQR', 'BQRRP\_HQR', 'HQRRP', 'GEQRF', 'GEQP3'}, 'NumColumns', 1);
+            lgd.FontSize = 20;
+            legend('Location','northeastoutside'); 
         case 3
             xticks([8000 16000 32000 64000]);
             xticklabels({'8000', '', '32000', ''})

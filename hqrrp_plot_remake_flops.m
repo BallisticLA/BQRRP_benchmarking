@@ -13,7 +13,7 @@ function[] = hqrrp_plot_remake_flops(filename_Intel, filename_AMD_AOCL, filename
     num_plot_rows = 3;
     num_plot_cols = 3;
 
-    tiledlayout(num_plot_rows, num_plot_cols + 1, "TileSpacing", "tight");
+    tiledlayout(num_plot_rows, num_plot_cols, "TileSpacing", "compact");
     process_and_plot(Data_in_Intel, num_thread_nums, num_mat_sizes, num_iters, num_algs, plot_num_Intel, show_labels, num_plot_rows, num_plot_cols);
     process_and_plot(Data_in_AMD_MKL, num_thread_nums+1, num_mat_sizes, num_iters, num_algs, plot_num_AMD_AOCL, show_labels, num_plot_rows, num_plot_cols);
     process_and_plot(Data_in_AMD_AOCL, num_thread_nums+1, num_mat_sizes, num_iters, num_algs, plot_num_AMD_MKL, show_labels, num_plot_rows, num_plot_cols);
@@ -58,20 +58,12 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
     end
     plot_config(plot_num, 2, 200, [1 5 10 50 100 150 200], show_labels, num_plot_rows, num_plot_cols);
 
-    % Phantom plot at the end of the first row
     if num_plot_cols == 3 && plot_num == 3
-        nexttile(plot_num + 1);
-        for j = 1:num_thread_nums
-            plot(nan, nan, marker_array{j}, 'Color', color_array{j}, "MarkerSize", markersize,'LineWidth', 1.8)
-            hold on
-        end
-        lgd=legend({'1 thread', '4 threads', '16 threads', '64 threads', '128 threads', '448 threads'}, 'NumColumns', 2);
+        lgd=legend({'1 thread', '4 threads', '16 threads', '64 threads', '128 threads', '448 threads'}, 'NumColumns', 1);
         lgd.FontSize = 20;
-        legend('Location','northwest');
-        % Hiding the phantom axis.
-        axis off
+        legend('Location','southeast');
     end
-    plot_num = plot_num + num_plot_cols + 1;
+    plot_num = plot_num + num_plot_cols;
 
     nexttile(plot_num)
     for j = 1:num_thread_nums
@@ -81,14 +73,7 @@ function[] = process_and_plot(Data_in, num_thread_nums, num_mat_sizes, num_iters
         hold on
     end
     plot_config(plot_num, 12, 2000, [25 50 100 500 1000 1500 2000], show_labels, num_plot_rows, num_plot_cols);
-    
-    % Phantom plot at the end of the first row
-    if num_plot_cols == 3 && plot_num == 7
-        nexttile(plot_num + 1);
-        % Hiding the phantom axis.
-        axis off
-    end
-    plot_num = plot_num + num_plot_cols + 1;
+    plot_num = plot_num + num_plot_cols;
 
     nexttile(plot_num)
     for j = 1:num_thread_nums
@@ -140,17 +125,17 @@ function[] = plot_config(plot_num, y_min_lim, y_max_lim, y_ticks, show_labels, n
         case 3
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
+        case 4
+            set(gca,'Xticklabel',[])
         case 5
             set(gca,'Xticklabel',[])
+            set(gca,'Yticklabel',[])
         case 6
             set(gca,'Yticklabel',[])
             set(gca,'Xticklabel',[])
-        case 7
+        case 8
             set(gca,'Yticklabel',[])
-            set(gca,'Xticklabel',[])
-        case 10
-            set(gca,'Yticklabel',[])
-        case 11
+        case 9
             set(gca,'Yticklabel',[])
     end
 end

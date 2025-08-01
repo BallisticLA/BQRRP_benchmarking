@@ -13,34 +13,11 @@ function[] = bqrrp_subroutine_performance_tall_qr(filename_Intel, filename_AMD, 
     Data_in_AMD_64k   = Data_in_AMD_64k((num_block_sizes * num_iters)+1:(2 * num_block_sizes * num_iters), :);
 
     % Horizontally stacking Intel and AMD machines
-    tiledlayout(2, 3,"TileSpacing","compact")
+    tiledlayout(2, 2,"TileSpacing","compact")
     nexttile
     process_and_plot(Data_in_Intel_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 1, show_labels, 3100);
     nexttile
     process_and_plot(Data_in_AMD_65k, num_block_sizes, num_iters, num_algs, rows1, cols1, 2, show_labels, 3100);
-    nexttile
-        % Phantom plot
-        markersize = 15;
-        plot(nan, nan, '-^', 'Color', 'red', "MarkerSize", markersize,'LineWidth', 1.8)     
-        hold on
-        plot(nan, nan, '-v', 'Color', '#EDB120', "MarkerSize", markersize,'LineWidth', 1.8) 
-        hold on
-        plot(nan, nan, '-<', 'Color', 'blue', "MarkerSize", markersize,'LineWidth', 1.8)    
-        hold on
-        plot(nan, nan, '->', 'Color', 'black', "MarkerSize", markersize,'LineWidth', 1.8)   
-        hold on
-        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
-        hold on
-        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8)
-        hold on
-        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8)
-        hold on
-        plot(nan, nan, '-*', 'Color', 'magenta', "MarkerSize", markersize,'LineWidth', 1.8) 
-        set(gca,'Yticklabel',[])
-        lgd=legend({'GEQRF', 'LATSQR', 'CholQR', 'CholQR + dep', 'GEQRT'}, 'NumColumns', 2);
-        lgd.FontSize = 20;
-        legend('Location','northwest'); 
-        axis off
     nexttile
     process_and_plot(Data_in_Intel_64k, num_block_sizes, num_iters, num_algs, rows2, cols2, 3, show_labels, 4000);
     nexttile
@@ -116,6 +93,10 @@ function[] = process_and_plot(Data_in, num_block_sizes, num_iters, num_algs, row
             set(gca,'Yticklabel',[])
             %xticks([512 2048 8192]);
             xticks([256 1024 4096]);
+            markersize = 15;
+            lgd=legend({'GEQRF', 'LATSQR', 'CholQR', 'CholQR + dep', 'GEQRT'}, 'NumColumns', 1);
+            lgd.FontSize = 20;
+            legend('Location','northeastoutside'); 
         case 3
             %xticks([500 2000 8000]);
             xticks([250 1000 4000]);
