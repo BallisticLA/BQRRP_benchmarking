@@ -1,0 +1,49 @@
+Description: Results from the cqrrpt error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:16000 by 50, 8000, 
+3.73942e-16,  2.2533e-17,  1.20525e-15,  6.99325e-16,
+Description: Results from the cqrrpt error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:16000 by 50, 8000, 
+1.04831e-16,  3.69847e-18,  8.74149e-16,  7.36536e-17,
+1.65205e-16,  7.91898e-18,  8.50184e-16,  1.25148e-16,
+2.35932e-06,  1.54472e-07,  8.51967e-16,  1.37112e-16,
+3.73942e-16,  2.2533e-17,  1.20525e-15,  6.99325e-16,
+3.61982e-16,  1.49455e-19,  2.42512e-15,  8.67015e-18,
+5.81979e-16,  1.86037e-19,  2.42808e-15,  9.98509e-18,
+8.46442e-06,  2.06813e-08,  2.70477e-15,  1.13921e-17,
+1.54832e-15,  3.45558e-16,  2.46779e-15,  2.03696e-17,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:16000 by 50, 8000, 
+Description: Results from the cqrrpt error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:32000 by 8000, 
+3.62253e-16,  7.33925e-20,  2.27272e-15,  7.90126e-18,
+5.8219e-16,  1.87019e-19,  2.2755e-15,  8.96684e-18,
+8.44496e-06,  1.12417e-08,  2.72763e-15,  1.44353e-17,
+1.57943e-15,  3.60773e-16,  2.32934e-15,  4.09643e-17,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:32000 by 50, 8000, 
+Description: Results from the cqrrpt error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:64000 by 50, 8000, 
+1.06775e-16,  6.7979e-18,  8.4658e-16,  1.55211e-16,
+1.65729e-16,  1.00781e-17,  8.3514e-16,  1.89564e-16,
+2.34139e-06,  8.08466e-08,  8.36196e-16,  1.09445e-16,
+3.62892e-16,  2.3491e-17,  1.12649e-15,  3.91171e-16,
+3.61993e-16,  1.0698e-19,  2.47322e-15,  1.87666e-17,
+5.81857e-16,  2.09601e-19,  2.4759e-15,  1.81123e-17,
+8.42677e-06,  2.92842e-08,  3.01752e-15,  2.5133e-17,
+1.35472e-15,  5.07785e-16,  2.25596e-15,  3.72053e-17,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:64000 by 50, 8000, 

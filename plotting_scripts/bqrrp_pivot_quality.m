@@ -4,9 +4,9 @@ function[] = bqrrp_pivot_quality(filename1, filename2, dim, show_labels)
 
     tiledlayout(2, 2,"TileSpacing","compact");
     nexttile
-    plot_r_norm(Data_in_r_norm(1, :), dim, 1, show_labels, 10^10)
+    plot_r_norm(Data_in_r_norm(1, :), dim, 1, show_labels, 10^11)
     nexttile
-    plot_r_norm(Data_in_r_norm(2, :), dim, 2, show_labels, 10^10)
+    plot_r_norm(Data_in_r_norm(2, :), dim, 2, show_labels, 10^11)
     nexttile
     plot_sv_ratio(Data_in_sv_ratio(1:2, :), dim, 3, show_labels, 10^15)
     nexttile
@@ -22,7 +22,10 @@ function[] = plot_sv_ratio(Data_in, dim, plot_position, show_labels, y_lim)
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
     grid on 
-    xlim([0 dim]);
+    %xlim([0 dim]);
+    xlim_padding = 0.1;
+    xlim([0, dim*(1+xlim_padding)])
+
     ylim([10^-2 y_lim]);
 
     if show_labels 
@@ -55,7 +58,9 @@ function[] = plot_r_norm(Data_in, dim, plot_position, show_labels, y_lim)
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;
     grid on 
-    xlim([0 dim]);
+    %xlim([0 dim]);
+    xlim_padding = 0.1;
+    xlim([0, dim*(1+xlim_padding)])
     ylim([0 y_lim]);
 
     if show_labels 

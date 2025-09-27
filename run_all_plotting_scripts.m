@@ -1,12 +1,44 @@
 
-
+addpath('plotting_scripts/');
 CPU_path_1        = "benchmark-output-bqrrp-paper/SapphireRapids/";
 CPU_path_2        = "benchmark-output-bqrrp-paper/Zen4c/";
 GPU_path          = "benchmark-output-bqrrp-paper/A100/";
 fig_path          = "output_figures/";
 benchmarking_date = "";
 
-show_lables = 0;
+show_lables = 1;
+
+
+figure('Name', 'nvidia_moores_law', 'NumberTitle', 'off');
+nvidia_moores_law()
+fig_save(gcf, fig_path, 12, 6);
+
+
+figure('Name', 'output_quality_test_mat_spectra', 'NumberTitle', 'off');
+dissertation_path = "benchmark-output-dissertation/test_matrices_spectra/";
+filename1 = dissertation_path + benchmarking_date + "_poly_spectrum_num_info_lines_4.txt";
+filename2 = dissertation_path + benchmarking_date + "_stair_spectrum_num_info_lines_4.txt";
+filename3 = dissertation_path + benchmarking_date + "_spike_spectrum_num_info_lines_4.txt";
+output_quality_test_mat_spectra(filename1, filename2, filename3, show_lables)
+fig_save(gcf, fig_path, 10, 8);
+
+figure('Name', 'bqrrp_sanity_check_combined', 'NumberTitle', 'off');
+dissertation_path = "benchmark-output-dissertation/bqrrp_sanity_check/";
+filename0 = dissertation_path + benchmarking_date + "sky_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename1 = dissertation_path + benchmarking_date + "cascade_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename2 = dissertation_path + benchmarking_date + "ice_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename3 = dissertation_path + benchmarking_date + "sapphire_rapids_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+hqrrp_sanity_check_combined(filename0, filename1, filename2, filename3, 10, 5, 20, 2, show_lables)
+fig_save(gcf, fig_path, 8, 7);
+
+figure('Name', 'bqrrp_sanity_check', 'NumberTitle', 'off');
+dissertation_path = "benchmark-output-dissertation/bqrrp_sanity_check/";
+filename0 = dissertation_path + benchmarking_date + "sky_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename1 = dissertation_path + benchmarking_date + "cascade_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename2 = dissertation_path + benchmarking_date + "ice_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+filename3 = dissertation_path + benchmarking_date + "sapphire_rapids_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";
+hqrrp_sanity_check(filename0, filename1, filename2, filename3, 10, 5, 20, 2, show_lables)
+fig_save(gcf, fig_path, 18, 10);
 
 figure('Name', 'cqrrpt_appendix_bqrrp_performance_varying_block_size_small_inputs', 'NumberTitle', 'off');
 filename1 = CPU_path_1 + "BQRRP_speed_comparisons_block_size_small/" + benchmarking_date + "_CQRRPT_appendix_BQRRP_speed_comparisons_block_size_num_info_lines_7.txt";

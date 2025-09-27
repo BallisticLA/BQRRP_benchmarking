@@ -1,0 +1,44 @@
+
+function[] = nvidia_moores_law()
+
+
+    tiledlayout(1, 2, "TileSpacing","compact")
+
+
+    nexttile
+    x = 1:6;
+
+    performance_mixed_precision = [1.4, 19, 130, 620, 4000, 20000];
+    semilogy(x, performance_mixed_precision, '-d', 'Color', [0, 0.5, 0], "MarkerSize", 15,'LineWidth', 1.8);
+
+    ax = gca;
+    ax.XAxis.FontSize = 20;
+    ax.YAxis.FontSize = 20;
+    grid on
+    yticks([0, 1, 25, 250, 2500, 25000]);
+    xticks([1, 2, 3, 4, 5, 6]);
+    ylim([0, 25000]);
+    xlim([1, 6]);
+    xticklabels({'Kepler K40 FP64', 'Pascal P100 FP16', 'Volta V100 FP16', 'Ampere A100 FP16', 'Hopper H100 FP8', 'Blackwell B200 FP4'});
+    ylabel('TFLOP/s', 'FontSize', 20); 
+    title({'NVIDIA GPU', 'Showcase Peak Performance'}, 'FontSize', 20);
+
+    nexttile
+
+    performance_fp64 = [1.7, 2.9, 7.5, 9.7, 60, 40];
+    semilogy(x, performance_fp64, '-d', 'Color', [0, 0.5, 0], "MarkerSize", 15,'LineWidth', 1.8);
+    
+    ax = gca;
+    ax.XAxis.FontSize = 20;
+    ax.YAxis.FontSize = 20;
+    grid on
+    %yticks([0, 1, 5, 10, 25, 50, 100]);
+    yticks([1, 25, 250, 2500, 25000]);
+    xticks([1, 2, 3, 4, 5, 6]);
+    ylim([0, 25000]);
+    xlim([1, 6]);
+    set(gca,'Yticklabel',[])
+    xticklabels({'Kepler K40', 'Pascal P100', 'Volta V100', 'Ampere A100', 'Hopper H100', 'Blackwell B200'});
+    %ylabel('FP64 TFLOP/s', 'FontSize', 20); 
+    title({'NVIDIA GPU', 'FP46 Peak Performance'}, 'FontSize', 20);
+end
