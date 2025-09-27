@@ -24,7 +24,7 @@
 % The only low-coherence matrix in this set is matrix E, and matrix A has
 % lower coherence than B, C, D. 
 % Since matrices C and D both have high coherence, we can assume that
-% coherence does not correlate with poor reconstruction error in QRCP.
+% coherence does not correlate with poor reco
 
 function[] = qrcp_reconstruction_issues_investigation()
     m = 1000;
@@ -77,6 +77,18 @@ function[] = qrcp_reconstruction_issues_investigation()
     max_leverage_score_C = max(sum(Q_C.^2, 2));
     max_leverage_score_D = max(sum(Q_D.^2, 2));
     max_leverage_score_E = max(sum(Q_E.^2, 2));
+    
+    % By construction, we have
+    % Matrix A - stacked identities, randomly scaled,
+    % multiplied by an orthonromal from the right.
+    %
+    % Matrix B - identity on top of zeros, randomly scaled,
+    % multiplied by an orthonromal from the right.
+    %
+    % Matrix C - identity on top of zeros, multiplied by an 
+    % orthonromal from the right.
+    %
+    % Matrix D - identity on top of zeros, randomly scaled.
     
     fprintf("coherence of A is %f; reconstruction error of A is %e\n", max_leverage_score_A, reconstrruction_error_A);
     fprintf("coherence of B is %f; reconstruction error of B is %e\n", max_leverage_score_B, reconstrruction_error_B);

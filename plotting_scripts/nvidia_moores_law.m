@@ -40,5 +40,5 @@ function[] = nvidia_moores_law()
     set(gca,'Yticklabel',[])
     xticklabels({'Kepler K40', 'Pascal P100', 'Volta V100', 'Ampere A100', 'Hopper H100', 'Blackwell B200'});
     %ylabel('FP64 TFLOP/s', 'FontSize', 20); 
-    title({'NVIDIA GPU', 'FP46 Peak Performance'}, 'FontSize', 20);
+    title({'NVIDIA GPU', 'FP64 Peak Performance'}, 'FontSize', 20);
 end

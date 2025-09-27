@@ -13,7 +13,7 @@ figure('Name', 'nvidia_moores_law', 'NumberTitle', 'off');
 nvidia_moores_law()
 fig_save(gcf, fig_path, 12, 6);
 
-
+%{
 figure('Name', 'output_quality_test_mat_spectra', 'NumberTitle', 'off');
 dissertation_path = "benchmark-output-dissertation/test_matrices_spectra/";
 filename1 = dissertation_path + benchmarking_date + "_poly_spectrum_num_info_lines_4.txt";
@@ -139,3 +139,4 @@ filename1 = CPU_path_1 + "HQRRP_plot_remake/" + benchmarking_date + "_BQRRP_spee
 filename2 = CPU_path_2 + "HQRRP_plot_remake/" + benchmarking_date + "_MKL_BQRRP_speed_comparisons_mat_size_num_info_lines_7.txt";
 hqrrp_plot_remake_ratios(filename1, filename2, 10, 5, 20, 7, show_lables);
 fig_save(gcf, fig_path, 10, 10);
+%}
