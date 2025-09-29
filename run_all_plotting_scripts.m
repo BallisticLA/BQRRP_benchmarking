@@ -8,20 +8,19 @@ benchmarking_date = "";
 
 show_lables = 1;
 
-
 figure('Name', 'nvidia_moores_law', 'NumberTitle', 'off');
 nvidia_moores_law()
 fig_save(gcf, fig_path, 12, 6);
 
-%{
+
 figure('Name', 'output_quality_test_mat_spectra', 'NumberTitle', 'off');
 dissertation_path = "benchmark-output-dissertation/test_matrices_spectra/";
 filename1 = dissertation_path + benchmarking_date + "_poly_spectrum_num_info_lines_4.txt";
 filename2 = dissertation_path + benchmarking_date + "_stair_spectrum_num_info_lines_4.txt";
 filename3 = dissertation_path + benchmarking_date + "_spike_spectrum_num_info_lines_4.txt";
 output_quality_test_mat_spectra(filename1, filename2, filename3, show_lables)
-fig_save(gcf, fig_path, 10, 8);
-
+fig_save(gcf, fig_path, 8, 8);
+%{
 figure('Name', 'bqrrp_sanity_check_combined', 'NumberTitle', 'off');
 dissertation_path = "benchmark-output-dissertation/bqrrp_sanity_check/";
 filename0 = dissertation_path + benchmarking_date + "sky_lake_HQRRP_GEMM_speed_comparisons_mat_size_num_info_lines_7.txt";

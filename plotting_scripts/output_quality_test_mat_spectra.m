@@ -23,7 +23,7 @@ function[] = plot_spectra(Data_in_1, Data_in_2, Data_in_3, show_labels, plot_pos
     %ylabel('sigma[k]', 'FontSize', 20);
     lgd = legend('Polynomial', 'Step', 'Spiked');
     lgd.FontSize = 20;
-    legend('Location','northeastoutside');
+    legend('Location','northeast');
     ax = gca;
     ax.XAxis.FontSize = 20;
     ax.YAxis.FontSize = 20;

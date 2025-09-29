@@ -27,7 +27,7 @@
 % coherence does not correlate with poor reconstruction error in QRCP.
 
 function[] = qrcp_reconstruction_issues_investigation()
-    m = 1000;
+    m = 16000;
     n = 50;
     I = eye(n, n);
     
@@ -63,11 +63,11 @@ function[] = qrcp_reconstruction_issues_investigation()
     [Q_E, R_E, P_E] = qr(E, 0);
     
     % Compute QRCP reconstruction errors
-    reconstrruction_error_A = norm(A(:, P_A) - Q_A * R_A, 'fro');
-    reconstrruction_error_B = norm(B(:, P_B) - Q_B * R_B, 'fro');
-    reconstrruction_error_C = norm(C(:, P_C) - Q_C * R_C, 'fro');
-    reconstrruction_error_D = norm(D(:, P_D) - Q_D * R_D, 'fro');
-    reconstrruction_error_E = norm(E(:, P_E) - Q_E * R_E, 'fro');
+    reconstrruction_error_A = norm(A(:, P_A) - Q_A * R_A, 'fro') / norm(A, 'fro');
+    reconstrruction_error_B = norm(B(:, P_B) - Q_B * R_B, 'fro') / norm(B, 'fro');
+    reconstrruction_error_C = norm(C(:, P_C) - Q_C * R_C, 'fro') / norm(C, 'fro');
+    reconstrruction_error_D = norm(D(:, P_D) - Q_D * R_D, 'fro') / norm(D, 'fro');
+    reconstrruction_error_E = norm(E(:, P_E) - Q_E * R_E, 'fro') / norm(E, 'fro');
     
     % If D is indeed high coherence, then this experiment contradicts the
     % assumption that high coherence matrices are generally difficult for QRCP.
@@ -77,7 +77,7 @@ function[] = qrcp_reconstruction_issues_investigation()
     max_leverage_score_C = max(sum(Q_C.^2, 2));
     max_leverage_score_D = max(sum(Q_D.^2, 2));
     max_leverage_score_E = max(sum(Q_E.^2, 2));
-    
+
     fprintf("coherence of A is %f; reconstruction error of A is %e\n", max_leverage_score_A, reconstrruction_error_A);
     fprintf("coherence of B is %f; reconstruction error of B is %e\n", max_leverage_score_B, reconstrruction_error_B);
     fprintf("coherence of C is %f; reconstruction error of C is %e\n", max_leverage_score_C, reconstrruction_error_C);

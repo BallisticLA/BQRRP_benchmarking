@@ -1,0 +1,75 @@
+Description: Results from the bqrrp error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:16000 by 16000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.00006e-15,  5.24758e-18,  1.71262e-15,  1.88363e-18,
+1.07953e-15,  3.62462e-18,  1.71059e-15,  1.72817e-18,
+1.20428e-15,  1.74047e-18,  1.59927e-15,  1.71536e-18,
+7.47592e-16,  2.83862e-16,  1.02982e-15,  9.5658e-18,
+9.85442e-16,  5.40204e-18,  1.71179e-15,  1.26616e-18,
+1.05984e-15,  2.09294e-18,  1.71007e-15,  1.26865e-18,
+1.18318e-15,  1.0344e-18,  1.59831e-15,  8.41447e-19,
+8.46162e-16,  2.6812e-16,  1.03236e-15,  7.39739e-18,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:16000 by 16000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.1112e-15,  0,  1.70088e-15,  0,
+1.36881e-15,  0,  1.69903e-15,  0,
+1.54131e-15,  0,  1.58625e-15,  0,
+0,  0,  0,  0,
+1.1112e-15,  0,  1.70088e-15,  0,
+1.36881e-15,  0,  1.69903e-15,  0,
+1.54131e-15,  0,  1.58625e-15,  0,
+0,  0,  0,  0,
+Description: Results from the bqrrp error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:32000 by 32000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.08289e-15,  2.22091e-18,  1.92797e-15,  1.30408e-18,
+1.19221e-15,  1.01292e-18,  1.92663e-15,  1.15815e-18,
+1.37278e-15,  8.05077e-19,  1.80187e-15,  1.21548e-18,
+7.43103e-16,  2.64788e-16,  1.09141e-15,  4.90523e-18,
+1.06451e-15,  3.07838e-18,  1.92611e-15,  8.94626e-19,
+1.17641e-15,  2.10487e-18,  1.92515e-15,  9.95405e-19,
+1.35381e-15,  1.24451e-18,  1.80014e-15,  1.1757e-18,
+9.04171e-16,  1.59058e-16,  1.08629e-15,  6.69738e-18,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:32000 by 32000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.31318e-15,  0,  1.91483e-15,  0,
+1.72683e-15,  0,  1.91498e-15,  0,
+1.983e-15,  0,  1.78826e-15,  0,
+0,  0,  0,  0,
+1.31318e-15,  0,  1.91483e-15,  0,
+1.72683e-15,  0,  1.91498e-15,  0,
+1.983e-15,  0,  1.78826e-15,  0,
+0,  0,  0,  0,
+Description: Results from the bqrrp error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:64000 by 64000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.22794e-15,  1.81422e-18,  2.12917e-15,  9.54341e-19,
+1.37603e-15,  7.47661e-19,  2.12783e-15,  7.33072e-19,
+1.61379e-15,  3.05422e-19,  2.00846e-15,  6.17316e-19,
+8.79482e-16,  1.99175e-16,  1.17928e-15,  4.53017e-18,
+1.2143e-15,  2.09971e-18,  2.12745e-15,  5.75389e-19,
+1.36219e-15,  5.22568e-19,  2.12656e-15,  6.11539e-19,
+1.59728e-15,  4.8474e-19,  2.00653e-15,  6.61888e-19,
+8.25792e-16,  2.89109e-16,  1.16714e-15,  7.77637e-18,
+Description: Results from the geqp3 error analysis; putput rows capture results per given matrix type, columns capture results per error type.
+At the moment, i test polynomial, staircase and spiked matrices with reconstructiuon error, max column norm error and orthogonality loss.
+Num OMP threads:128
+Input size:64000 by 64000
+Additional parameters: BQRRP block sizes: 250, 8000, 
+1.64606e-15,  0,  2.11741e-15,  0,
+2.26969e-15,  0,  2.11642e-15,  0,
+2.63323e-15,  0,  1.99553e-15,  0,
+0,  0,  0,  0,
+1.64606e-15,  0,  2.11741e-15,  0,
